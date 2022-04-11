@@ -16,21 +16,9 @@
 		<data>
 		kPuwj4QnCvTzeGeUFhwduQxkGuY=
 		</data>
-		<key>Frameworks/Epoxy.framework/Epoxy</key>
-		<data>
-		X4HVBwH2oCjnpPAj3BAsmoJH7mQ=
-		</data>
-		<key>Frameworks/Epoxy.framework/Info.plist</key>
-		<data>
-		McuZiCL94ZgDdKJ46lwVPRQjo+w=
-		</data>
-		<key>Frameworks/Epoxy.framework/_CodeSignature/CodeResources</key>
-		<data>
-		rJlVvETJBzGXpJQJ0d68S9TVbT4=
-		</data>
 		<key>Headers/Treasure-Swift.h</key>
 		<data>
-		kcxFmAGhOo18HpaQCTZ3K/CiTFg=
+		LL1J1Kg/ms7d9kTd+8y+tLGYtO8=
 		</data>
 		<key>Headers/Treasure.h</key>
 		<data>
@@ -38,31 +26,31 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		oBbYBus08tA/ftjjgr3hk7j8QL0=
+		91AyiQngF8btz2JmmoKKNKeLt78=
 		</data>
 		<key>Modules/Treasure.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		0fXnGi45jRVhwTQx3xsvxULTjvg=
+		R60Fo0ujhS4B/V19kM+80cK3jVY=
 		</data>
 		<key>Modules/Treasure.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		NCWNDpBn7c8AxsXRZvvk0jt18Ew=
+		xertLNLRNCU+QtgAXKHbNyAuKrU=
 		</data>
 		<key>Modules/Treasure.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		+jcxoXqqPonUsikOjT1eRJi/4sA=
+		tkhzSayuvlwGY6nMsx3NwHuiswo=
 		</data>
 		<key>Modules/Treasure.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		0fXnGi45jRVhwTQx3xsvxULTjvg=
+		R60Fo0ujhS4B/V19kM+80cK3jVY=
 		</data>
 		<key>Modules/Treasure.swiftmodule/x86_64.swiftinterface</key>
 		<data>
-		NCWNDpBn7c8AxsXRZvvk0jt18Ew=
+		xertLNLRNCU+QtgAXKHbNyAuKrU=
 		</data>
 		<key>Modules/Treasure.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		+jcxoXqqPonUsikOjT1eRJi/4sA=
+		tkhzSayuvlwGY6nMsx3NwHuiswo=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -101,32 +89,11 @@
 			5EblArdJYEpJKQ/3+hlpv8NVVdMnnGTlMYUII3nyDxw=
 			</data>
 		</dict>
-		<key>Frameworks/Epoxy.framework/Epoxy</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Q8Xa8OH5Yud5cUJ8icIOhpdyFuAPDOWpTBKZ2p/I9q0=
-			</data>
-		</dict>
-		<key>Frameworks/Epoxy.framework/Info.plist</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			tKuX8Ipz9Fp182uzBi7gWT6QVbaF4VcVZO09atOpjlU=
-			</data>
-		</dict>
-		<key>Frameworks/Epoxy.framework/_CodeSignature/CodeResources</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			XR76vePCPEc6FoYBEzZ8BCSLbib0/REOoah04whfmzc=
-			</data>
-		</dict>
 		<key>Headers/Treasure-Swift.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			DP5LJDejrhB+GP0Qz/PvfPepuDnUtU0vplW5GadXpB4=
+			mdPxQQ/qfZdCzQowF1JQY7iuVKB/Csufak2kX/e7pYo=
 			</data>
 		</dict>
 		<key>Headers/Treasure.h</key>
@@ -140,42 +107,42 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			XBarEi+6nUYlC6RuK9rVxuCT5KomRWCs8N/BeiHu35M=
+			Cbx3RhmE1Yfwy0fjqYd4E+G8fXZ+7HEGoY2TFox12BE=
 			</data>
 		</dict>
 		<key>Modules/Treasure.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ggEiyfGBKeJNLSR4fJHCzaxa2+6s9xxh+RuBSc5iPYA=
+			qhXQSGwDFEhMKiG4NrdwnoErzc3VcGUNF7v6qAZD1oU=
 			</data>
 		</dict>
 		<key>Modules/Treasure.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FP39Ncxavm+2hstIIabk0vucTEhvDnS5kva1492QEwA=
+			0nlNA7Cd5Xd3Evfg9WlDP3jh/LEt1AdBcHsZKe5u4As=
 			</data>
 		</dict>
 		<key>Modules/Treasure.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			XBarEi+6nUYlC6RuK9rVxuCT5KomRWCs8N/BeiHu35M=
+			Cbx3RhmE1Yfwy0fjqYd4E+G8fXZ+7HEGoY2TFox12BE=
 			</data>
 		</dict>
 		<key>Modules/Treasure.swiftmodule/x86_64.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ggEiyfGBKeJNLSR4fJHCzaxa2+6s9xxh+RuBSc5iPYA=
+			qhXQSGwDFEhMKiG4NrdwnoErzc3VcGUNF7v6qAZD1oU=
 			</data>
 		</dict>
 		<key>Modules/Treasure.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FP39Ncxavm+2hstIIabk0vucTEhvDnS5kva1492QEwA=
+			0nlNA7Cd5Xd3Evfg9WlDP3jh/LEt1AdBcHsZKe5u4As=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

@@ -189,6 +189,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
 @import CoreGraphics;
+@import Foundation;
 @import ObjectiveC;
 @import UIKit;
 #endif
@@ -208,9 +209,197 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 # pragma pop_macro("any")
 #endif
 
-
-
 @class NSCoder;
+@class UIEvent;
+@class UIView;
+@class UITouch;
+
+/// A stack of arbitrary bar views, typically fixed to either the top or bottom of a view
+/// controller. It can also be used as a stack view that supports selection.
+SWIFT_CLASS("_TtC8Treasure12BarStackView")
+@interface BarStackView : UIStackView
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER SWIFT_UNAVAILABLE;
+- (UIView * _Nullable)hitTest:(CGPoint)point withEvent:(UIEvent * _Nullable)event SWIFT_WARN_UNUSED_RESULT;
+- (void)touchesBegan:(NSSet<UITouch *> * _Nonnull)touches withEvent:(UIEvent * _Nullable)event;
+- (void)touchesMoved:(NSSet<UITouch *> * _Nonnull)touches withEvent:(UIEvent * _Nullable)event;
+- (void)touchesEnded:(NSSet<UITouch *> * _Nonnull)touches withEvent:(UIEvent * _Nullable)event;
+- (void)touchesCancelled:(NSSet<UITouch *> * _Nonnull)touches withEvent:(UIEvent * _Nullable)event;
+- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
+@end
+
+
+
+
+/// A wrapper of a single bar view that supports animatedly updating its bar model.
+/// Cannot have a <code>CATransformLayer</code> as its layer class as that prevents usage of the
+/// <code>UIView.transition</code> APIs for swapping its contents.
+SWIFT_CLASS("_TtC8Treasure14BarWrapperView")
+@interface BarWrapperView : UIView
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
+- (void)layoutSubviews;
+- (UIView * _Nullable)hitTest:(CGPoint)point withEvent:(UIEvent * _Nullable)event SWIFT_WARN_UNUSED_RESULT;
+- (void)layoutMarginsDidChange;
+- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
+@end
+
+
+/// A view that:
+/// <ul>
+///   <li>
+///     Contains a zero or more bars and updates their layout margins relative to the original safe
+///     area insets of its view controller.
+///   </li>
+///   <li>
+///     Updates the additional bottom safe area insets of its weak view controller reference to be
+///     inset by the height of the bar stack.
+///   </li>
+/// </ul>
+SWIFT_CLASS("_TtC8Treasure18BottomBarContainer")
+@interface BottomBarContainer : BarStackView
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic) CGPoint center;
+- (void)layoutSubviews;
+- (void)didMoveToSuperview;
+@end
+
+
+/// Installs a stack of bar views into a view controller.
+/// The bar stack is constrained to the bottom of the view controller’s view.
+/// The view controller’s safe area inset bottom is automatically inset by the height of the bar
+/// stack, ensuring that any scrollable content is inset by the height of the bars.
+/// seealso:
+/// <code>BarModel</code>
+SWIFT_CLASS("_TtC8Treasure18BottomBarInstaller")
+@interface BottomBarInstaller : NSObject
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+
+
+@class UITraitCollection;
+@class UICollectionViewLayout;
+
+/// A <code>UICollectionView</code> class that handles updates through its <code>setSections(_:animated:)</code> method,
+/// optionally animates the differences between <code>sections</code>.
+SWIFT_CLASS("_TtC8Treasure14CollectionView")
+@interface CollectionView : UICollectionView
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER SWIFT_UNAVAILABLE;
+- (void)traitCollectionDidChange:(UITraitCollection * _Nullable)previousTraitCollection;
+- (void)didMoveToWindow;
+- (nonnull instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout * _Nonnull)layout SWIFT_UNAVAILABLE;
+@end
+
+
+
+@class NSIndexPath;
+
+@interface CollectionView (SWIFT_EXTENSION(Treasure)) <UICollectionViewDataSourcePrefetching>
+- (void)collectionView:(UICollectionView * _Nonnull)collectionView prefetchItemsAtIndexPaths:(NSArray<NSIndexPath *> * _Nonnull)indexPaths;
+- (void)collectionView:(UICollectionView * _Nonnull)collectionView cancelPrefetchingForItemsAtIndexPaths:(NSArray<NSIndexPath *> * _Nonnull)indexPaths;
+@end
+
+@class NSString;
+@class UINib;
+
+@interface CollectionView (SWIFT_EXTENSION(Treasure))
+- (void)registerClass:(Class _Nullable)cellClass forCellWithReuseIdentifier:(NSString * _Nonnull)identifier SWIFT_UNAVAILABLE_MSG("You shouldn't be registering cell classes on a CollectionView. The CollectionViewDataSource handles this for you.");
+- (void)registerNib:(UINib * _Nullable)nib forCellWithReuseIdentifier:(NSString * _Nonnull)identifier SWIFT_UNAVAILABLE_MSG("You shouldn't be registering cell nibs on a CollectionView. The CollectionViewDataSource handles this for you.");
+- (void)registerNib:(UINib * _Nullable)nib forSupplementaryViewOfKind:(NSString * _Nonnull)kind withReuseIdentifier:(NSString * _Nonnull)identifier SWIFT_UNAVAILABLE_MSG("You shouldn't be registering supplementary view nibs on a CollectionView. The CollectionViewDataSource handles this for you.");
+- (void)registerClass:(Class _Nullable)viewClass forSupplementaryViewOfKind:(NSString * _Nonnull)elementKind withReuseIdentifier:(NSString * _Nonnull)identifier SWIFT_UNAVAILABLE_MSG("You shouldn't be registering supplementary view classes on a CollectionView. The CollectionViewDataSource handles this for you.");
+@end
+
+@class NSNumber;
+
+@interface CollectionView (SWIFT_EXTENSION(Treasure)) <UICollectionViewDelegateFlowLayout>
+- (CGSize)collectionView:(UICollectionView * _Nonnull)collectionView layout:(UICollectionViewLayout * _Nonnull)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+- (UIEdgeInsets)collectionView:(UICollectionView * _Nonnull)collectionView layout:(UICollectionViewLayout * _Nonnull)collectionViewLayout insetForSectionAtIndex:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (CGFloat)collectionView:(UICollectionView * _Nonnull)collectionView layout:(UICollectionViewLayout * _Nonnull)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (CGFloat)collectionView:(UICollectionView * _Nonnull)collectionView layout:(UICollectionViewLayout * _Nonnull)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (CGSize)collectionView:(UICollectionView * _Nonnull)collectionView layout:(UICollectionViewLayout * _Nonnull)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (CGSize)collectionView:(UICollectionView * _Nonnull)collectionView layout:(UICollectionViewLayout * _Nonnull)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+@end
+
+@class UIScrollView;
+
+@interface CollectionView (SWIFT_EXTENSION(Treasure)) <UIScrollViewDelegate>
+- (void)scrollViewDidScroll:(UIScrollView * _Nonnull)scrollView;
+- (void)scrollViewWillBeginDragging:(UIScrollView * _Nonnull)scrollView;
+- (void)scrollViewWillEndDragging:(UIScrollView * _Nonnull)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(CGPoint * _Nonnull)targetContentOffset;
+- (void)scrollViewDidEndDragging:(UIScrollView * _Nonnull)scrollView willDecelerate:(BOOL)decelerate;
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView * _Nonnull)scrollView SWIFT_WARN_UNUSED_RESULT;
+- (void)scrollViewDidScrollToTop:(UIScrollView * _Nonnull)scrollView;
+- (void)scrollViewWillBeginDecelerating:(UIScrollView * _Nonnull)scrollView;
+- (void)scrollViewDidEndDecelerating:(UIScrollView * _Nonnull)scrollView;
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView * _Nonnull)scrollView;
+@end
+
+@class UICollectionViewCell;
+@class UICollectionReusableView;
+@class UICollectionViewTransitionLayout;
+
+@interface CollectionView (SWIFT_EXTENSION(Treasure)) <UICollectionViewDelegate>
+- (void)collectionView:(UICollectionView * _Nonnull)collectionView willDisplayCell:(UICollectionViewCell * _Nonnull)cell forItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
+- (void)collectionView:(UICollectionView * _Nonnull)collectionView didEndDisplayingCell:(UICollectionViewCell * _Nonnull)cell forItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
+- (void)collectionView:(UICollectionView * _Nonnull)collectionView willDisplaySupplementaryView:(UICollectionReusableView * _Nonnull)view forElementKind:(NSString * _Nonnull)elementKind atIndexPath:(NSIndexPath * _Nonnull)indexPath;
+- (void)collectionView:(UICollectionView * _Nonnull)collectionView didEndDisplayingSupplementaryView:(UICollectionReusableView * _Nonnull)view forElementOfKind:(NSString * _Nonnull)elementKind atIndexPath:(NSIndexPath * _Nonnull)indexPath;
+- (BOOL)collectionView:(UICollectionView * _Nonnull)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+- (void)collectionView:(UICollectionView * _Nonnull)collectionView didHighlightItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
+- (void)collectionView:(UICollectionView * _Nonnull)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
+- (BOOL)collectionView:(UICollectionView * _Nonnull)collectionView shouldSelectItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+- (void)collectionView:(UICollectionView * _Nonnull)collectionView didSelectItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
+- (BOOL)collectionView:(UICollectionView * _Nonnull)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+- (void)collectionView:(UICollectionView * _Nonnull)collectionView didDeselectItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
+- (UICollectionViewTransitionLayout * _Nonnull)collectionView:(UICollectionView * _Nonnull)collectionView transitionLayoutForOldLayout:(UICollectionViewLayout * _Nonnull)fromLayout newLayout:(UICollectionViewLayout * _Nonnull)toLayout SWIFT_WARN_UNUSED_RESULT;
+@end
+
+@class UICollectionViewLayoutAttributes;
+
+/// An internal cell class for use in a <code>CollectionView</code>.
+SWIFT_CLASS("_TtC8Treasure18CollectionViewCell")
+@interface CollectionViewCell : UICollectionViewCell
+- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER SWIFT_UNAVAILABLE;
+@property (nonatomic, getter=isSelected) BOOL selected;
+@property (nonatomic, getter=isHighlighted) BOOL highlighted;
+- (UICollectionViewLayoutAttributes * _Nonnull)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes * _Nonnull)layoutAttributes SWIFT_WARN_UNUSED_RESULT;
+- (void)prepareForReuse;
+@end
+
+
+
+@interface CollectionViewCell (SWIFT_EXTENSION(Treasure))
+@property (nonatomic) BOOL accessibilityElementsHidden;
+- (void)accessibilityElementDidBecomeFocused;
+- (void)accessibilityElementDidLoseFocus;
+@end
+
+@class NSBundle;
+
+/// A subclassable collection view controller that manages its sections declarative via an array of
+/// <code>SectionModel</code>s that represent its scrollable content.
+/// To update the sections of this view controller, call <code>setSections(_:animated:)</code> with a new array
+/// of <code>SectionModel</code>s modeling the new content.
+SWIFT_CLASS("_TtC8Treasure24CollectionViewController")
+@interface CollectionViewController : UIViewController
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER SWIFT_UNAVAILABLE;
+- (void)viewDidLoad;
+- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
+@end
+
+
+/// An internal collection reusable view class for use in a <code>CollectionView</code>.
+SWIFT_CLASS("_TtC8Treasure26CollectionViewReusableView")
+@interface CollectionViewReusableView : UICollectionReusableView
+- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER SWIFT_UNAVAILABLE;
+- (UICollectionViewLayoutAttributes * _Nonnull)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes * _Nonnull)layoutAttributes SWIFT_WARN_UNUSED_RESULT;
+@end
+
 
 SWIFT_CLASS("_TtC8Treasure25DynamicWidthNavigatorView")
 @interface DynamicWidthNavigatorView : UIView
@@ -228,8 +417,26 @@ SWIFT_CLASS("_TtC8Treasure25FullScreenPresentableView")
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)_ OBJC_DESIGNATED_INITIALIZER;
 @end
 
-@class UIViewController;
-@class NSNumber;
+
+/// A generic layout guide that models SwiftUI’s <code>HStack</code>.
+/// Please see the README for usage information
+SWIFT_CLASS("_TtC8Treasure6HGroup")
+@interface HGroup : UILayoutGuide
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER SWIFT_UNAVAILABLE;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+
+/// A view backed version of HGroup that can also be used seamlessly with Epoxy
+SWIFT_CLASS("_TtC8Treasure10HGroupView")
+@interface HGroupView : UIView
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
+- (void)traitCollectionDidChange:(UITraitCollection * _Nullable)previousTraitCollection;
+- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
+@end
+
 @protocol UIContentContainer;
 
 /// A modal presentation controller that presents the presented view controller modally,
@@ -255,6 +462,20 @@ SWIFT_CLASS("_TtC8Treasure31HalfModalPresentationController")
 @property (nonatomic, readonly) CGRect frameOfPresentedViewInContainerView;
 @end
 
+
+/// A stack of arbitrary bar views that is intended to be used as an input accessory view of a
+/// keyboard.
+/// When the keyboard is hidden, insets the bar stack’s content by the bottom safe area.
+/// Sized intrinsically, so that you don’t need to call <code>sizeToFit</code> before adding it.
+SWIFT_CLASS("_TtC8Treasure26InputAccessoryBarStackView")
+@interface InputAccessoryBarStackView : UIView
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER SWIFT_UNAVAILABLE;
+@property (nonatomic, readonly) CGSize intrinsicContentSize;
+- (void)layoutSubviews;
+- (void)safeAreaInsetsDidChange;
+- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
+@end
+
 @class UIGestureRecognizer;
 
 SWIFT_CLASS("_TtC8Treasure24InteractivePopRecognizer")
@@ -274,6 +495,7 @@ SWIFT_CLASS("_TtC8Treasure20LoadingFullScreenHUD")
 
 
 
+
 @class UIColor;
 
 /// Activity indicator view with nice animations
@@ -287,6 +509,54 @@ SWIFT_CLASS("_TtC8Treasure23NVActivityIndicatorView")
 @property (nonatomic, readonly) CGSize intrinsicContentSize;
 @property (nonatomic) CGRect bounds;
 - (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
+@end
+
+
+/// Used inside of an HGroup or VGroup to space out components
+/// e.g.:
+/// let vGroup = VGroup {
+/// titleLabel
+/// Spacer(fixedHeight: 16)
+/// subtitleLabel
+/// }
+SWIFT_CLASS("_TtC8Treasure6Spacer")
+@interface Spacer : UILayoutGuide
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER SWIFT_UNAVAILABLE;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+/// A view that:
+/// <ul>
+///   <li>
+///     Contains a zero or more bars and updates their layout margins relative to the original safe
+///     area insets of its view controller.
+///   </li>
+///   <li>
+///     Updates the additional top safe area insets of its view controller to be inset by the height
+///     of the bar stack.
+///   </li>
+/// </ul>
+SWIFT_CLASS("_TtC8Treasure15TopBarContainer")
+@interface TopBarContainer : BarStackView
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic) CGPoint center;
+- (void)layoutSubviews;
+- (void)didMoveToSuperview;
+@end
+
+
+/// Installs a stack of bar views at the top of a view controller’s view.
+/// The bar stack is constrained to the top of the view controller’s view.
+/// The view controller’s safe area inset top is automatically inset by the height of the bar stack,
+/// ensuring that any scrollable content is inset by the height of the bars.
+/// seealso:
+/// <code>BarModel</code>
+SWIFT_CLASS("_TtC8Treasure15TopBarInstaller")
+@interface TopBarInstaller : NSObject
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
 
@@ -318,6 +588,32 @@ SWIFT_CLASS("_TtC8Treasure23NVActivityIndicatorView")
 
 
 
+
+
+
+
+
+
+
+
+
+/// A generic layout guide that models SwiftUI’s <code>VStack</code>.
+/// Please see the README for usage information
+SWIFT_CLASS("_TtC8Treasure6VGroup")
+@interface VGroup : UILayoutGuide
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER SWIFT_UNAVAILABLE;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+
+/// A view backed version of VGroup that can also be used seamlessly with Epoxy
+SWIFT_CLASS("_TtC8Treasure10VGroupView")
+@interface VGroupView : UIView
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
+- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
+@end
 
 @class UIVisualEffect;
 
