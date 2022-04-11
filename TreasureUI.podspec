@@ -21,6 +21,8 @@ Pod::Spec.new do |spec|
   spec.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64', 'SWIFT_SUPPRESS_WARNINGS' => 'YES' }
   spec.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   
+  spec.dependency = 'BlocksCore'
+
   spec.subspec 'Core' do |plugin|
     plugin.vendored_frameworks = 'Treasure.xcframework'
   end
