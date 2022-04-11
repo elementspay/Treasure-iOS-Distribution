@@ -1,0 +1,1878 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5 (swiftlang-1300.0.31.1 clang-1300.0.29.1)
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name Treasure
+import BlocksCore
+import Epoxy
+import Foundation
+import ObjectiveC
+import Swift
+@_exported import Treasure
+import UIKit
+import _Concurrency
+public enum SwipeButtonDisplayMode {
+  case titleAndImage, titleOnly, imageOnly
+  public static func == (a: Treasure.SwipeButtonDisplayMode, b: Treasure.SwipeButtonDisplayMode) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum SwipeButtonStyle {
+  case backgroundColor, circular
+  public static func == (a: Treasure.SwipeButtonStyle, b: Treasure.SwipeButtonStyle) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum SwipeActionDescriptor {
+  case read, unread, more, rewrite, trash
+  public func title(forDisplayMode displayMode: Treasure.SwipeButtonDisplayMode) -> Swift.String?
+  public func image(forStyle style: Treasure.SwipeButtonStyle, displayMode: Treasure.SwipeButtonDisplayMode) -> UIKit.UIImage?
+  public func color(forStyle _: Treasure.SwipeButtonStyle) -> UIKit.UIColor
+  public func circularIcon(with color: UIKit.UIColor, size: CoreGraphics.CGSize, icon: UIKit.UIImage? = nil) -> UIKit.UIImage?
+  public static func == (a: Treasure.SwipeActionDescriptor, b: Treasure.SwipeActionDescriptor) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol NVActivityIndicatorViewable {
+}
+extension Treasure.NVActivityIndicatorViewable where Self : UIKit.UIViewController {
+  public var isAnimating: Swift.Bool {
+    get
+  }
+  public func startAnimating(_ size: CoreGraphics.CGSize? = nil, message: Swift.String? = nil, messageFont: UIKit.UIFont? = nil, type: Treasure.NVActivityIndicatorType? = nil, color: UIKit.UIColor? = nil, padding: CoreGraphics.CGFloat? = nil, displayTimeThreshold: Swift.Int? = nil, minimumDisplayTime: Swift.Int? = nil, backgroundColor: UIKit.UIColor? = nil, textColor: UIKit.UIColor? = nil, fadeInAnimation: Treasure.FadeInAnimation? = NVActivityIndicatorView.DEFAULT_FADE_IN_ANIMATION)
+  public func stopAnimating(_ fadeOutAnimation: Treasure.FadeOutAnimation? = NVActivityIndicatorView.DEFAULT_FADE_OUT_ANIMATION)
+}
+public struct ExternalAction : Treasure.TreasureAction {
+  public let analytics: Treasure.TreasureAnalytics?
+  public let actionType: Swift.String
+  public let data: Treasure.DynamicObject?
+  public init(actionType: Swift.String)
+  public init(from decoder: Swift.Decoder) throws
+  public func executeAction(params: Treasure.TreasureActionParameters)
+}
+extension Treasure.FileWatcher {
+  final public class Local : Treasure.FileWatcherProtocol {
+    public init(path: Swift.String, refreshInterval: Foundation.TimeInterval = 1/60, queue: Dispatch.DispatchQueue = DispatchQueue.main)
+    final public func start(closure: @escaping Treasure.FileWatcher.UpdateClosure) throws
+    final public func stop() throws
+    @objc deinit
+    final public func refresh()
+  }
+}
+extension Treasure.DynamicObject : Swift.ExpressibleByNilLiteral, Swift.ExpressibleByBooleanLiteral, Swift.ExpressibleByIntegerLiteral, Swift.ExpressibleByFloatLiteral, Swift.ExpressibleByStringLiteral, Swift.ExpressibleByStringInterpolation, Swift.ExpressibleByArrayLiteral, Swift.ExpressibleByDictionaryLiteral {
+  public init(nilLiteral: Swift.Void)
+  public init(booleanLiteral value: Swift.Bool)
+  public init(integerLiteral value: Swift.Int)
+  public init(floatLiteral value: Swift.Double)
+  public init(stringLiteral value: Swift.String)
+  public init(arrayLiteral elements: Treasure.DynamicObject...)
+  public init(dictionaryLiteral elements: (Swift.String, Treasure.DynamicObject)...)
+  public typealias ArrayLiteralElement = Treasure.DynamicObject
+  public typealias BooleanLiteralType = Swift.Bool
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
+  public typealias FloatLiteralType = Swift.Double
+  public typealias IntegerLiteralType = Swift.Int
+  public typealias Key = Swift.String
+  public typealias StringInterpolation = Swift.DefaultStringInterpolation
+  public typealias StringLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.String
+  public typealias Value = Treasure.DynamicObject
+}
+public enum ImageContentMode : Swift.String, Swift.Decodable {
+  case scaleAspectFit
+  case scaleToFill
+  case scaleAspectFill
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct ImageElementStyle : Treasure.ElementStyle {
+  public let id: Swift.String
+  public let basicProps: Treasure.ElementStyleProps?
+  public let imageCornerRadius: Swift.Double?
+  public let imageHeight: Swift.Double?
+  public let imageWidth: Swift.Double?
+  public let imageMode: Treasure.ImageContentMode?
+  public init(id: Swift.String, basicProps: Treasure.ElementStyleProps? = nil, imageCornerRadius: Swift.Double? = nil, imageHeight: Swift.Double? = nil, imageWidth: Swift.Double? = nil, imageMode: Treasure.ImageContentMode? = nil)
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct ImageElement : Treasure.TreasureElement {
+  public let id: Swift.String
+  public let style: Treasure.Expression<Swift.String>?
+  public let accessibilityLabel: Swift.String?
+  public let image: Treasure.Expression<Treasure.TreasureImageSource>
+  public let onPressAction: Treasure.Expression<Treasure.AnyTreasureAction>?
+  public init(id: Swift.String, style: Treasure.Expression<Swift.String>? = nil, accessibilityLabel: Swift.String? = nil, image: Treasure.Expression<Treasure.TreasureImageSource>, onPressAction: Treasure.Expression<Treasure.AnyTreasureAction>? = nil)
+  public func buildUIElement(parameters: Treasure.TreasureElementParameters) -> Treasure.ElementRenderModeling?
+  public init(from decoder: Swift.Decoder) throws
+}
+extension UIKit.UIButton {
+  @_Concurrency.MainActor(unsafe) public func setBackgroundColor(color: UIKit.UIColor, forState: UIKit.UIControl.State)
+}
+@objc @_Concurrency.MainActor(unsafe) public class InteractivePopRecognizer : ObjectiveC.NSObject, UIKit.UIGestureRecognizerDelegate {
+  @_Concurrency.MainActor(unsafe) public var navigationController: UIKit.UINavigationController
+  @_Concurrency.MainActor(unsafe) public init(controller: UIKit.UINavigationController)
+  @_Concurrency.MainActor(unsafe) @objc public func gestureRecognizerShouldBegin(_: UIKit.UIGestureRecognizer) -> Swift.Bool
+  @_Concurrency.MainActor(unsafe) @objc public func gestureRecognizer(_: UIKit.UIGestureRecognizer, shouldRecognizeSimultaneouslyWith _: UIKit.UIGestureRecognizer) -> Swift.Bool
+  @objc deinit
+}
+public struct TreasureView : Swift.Decodable {
+  public let context: Treasure.Context?
+  public let screens: [Treasure.TreasureScreen]
+  public let sections: [Treasure.TreasureSection]
+  public let blueprints: [Treasure.TreasureElement]
+  public let styles: [Treasure.ElementStyle]
+  public init(from decoder: Swift.Decoder) throws
+}
+public protocol ElementStyle : Swift.Decodable {
+  var id: Swift.String { get }
+  var basicProps: Treasure.ElementStyleProps? { get }
+}
+public protocol ItemStyling {
+}
+public enum ElementStyleType : Swift.String {
+  case screen
+  case label
+  case image
+  case button
+  case titleSubtitle
+  case basicListItem
+  case divider
+  case group
+  case card
+  case navBar
+  case designSystem
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum AnyElementStyle : Swift.Decodable {
+  case screen(Treasure.TreasureScreenStyle)
+  case label(Treasure.LabelElementStyle)
+  case image(Treasure.ImageElementStyle)
+  case button(Treasure.ButtonElementStyle)
+  case titleSubtitle(Treasure.TitleSubtitleElementStyle)
+  case basicListItem(Treasure.BasicListItemElementStyle)
+  case divider(Treasure.DividerElementStyle)
+  case group(Treasure.GroupElementStyle)
+  case card(Treasure.CardContainerElementStyle)
+  case navBar(Treasure.NavBarElementStyle)
+  case designSystem(Treasure.DesignSystemStyle)
+  case none
+  public init(from decoder: Swift.Decoder) throws
+  public var value: Treasure.ElementStyle? {
+    get
+  }
+}
+public protocol ElementStyleDecoder {
+  func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyElementStyle
+}
+public struct UnsupportedElementStyleDecoder : Treasure.ElementStyleDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyElementStyle
+}
+public struct ScreenElementStyleDecoder : Treasure.ElementStyleDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyElementStyle
+}
+public struct TitleElementStyleDecoder : Treasure.ElementStyleDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyElementStyle
+}
+public struct ImageElementStyleDecoder : Treasure.ElementStyleDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyElementStyle
+}
+public struct ButtonElementStyleDecoder : Treasure.ElementStyleDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyElementStyle
+}
+public struct TitleSubtitleElementStyleDecoder : Treasure.ElementStyleDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyElementStyle
+}
+public struct BasicListItemElementStyleDecoder : Treasure.ElementStyleDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyElementStyle
+}
+public struct GroupElementStyleDecoder : Treasure.ElementStyleDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyElementStyle
+}
+public struct DividerElementStyleDecoder : Treasure.ElementStyleDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyElementStyle
+}
+public struct CardContainerElementStyleDecoder : Treasure.ElementStyleDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyElementStyle
+}
+public struct NavBarElementStyleDecoder : Treasure.ElementStyleDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyElementStyle
+}
+public struct DesignSystemStyleDecoder : Treasure.ElementStyleDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyElementStyle
+}
+public enum AnyTreasureElementStyleDecoder {
+}
+public struct SetContextAction : Treasure.TreasureAction {
+  public let contextId: Swift.String
+  public let analytics: Treasure.TreasureAnalytics?
+  public var path: Treasure.Path?
+  public var value: Treasure.DynamicObject
+  public init(from decoder: Swift.Decoder) throws
+  public func executeAction(params: Treasure.TreasureActionParameters)
+}
+public enum PresentationStyle : Swift.String, Swift.Decodable {
+  case system
+  case wrapContent
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum NavigateAction : Treasure.TreasureAction, Swift.Decodable {
+  case openExternalURL(Swift.String, analytics: Treasure.TreasureAnalytics? = nil)
+  case openNativeRoute(Treasure.NavigateAction.OpenNativeRoute, analytics: Treasure.TreasureAnalytics? = nil)
+  case presentView(Treasure.TreasureRoute, presentationStyle: Treasure.PresentationStyle?, analytics: Treasure.TreasureAnalytics? = nil)
+  case refreshView(Treasure.TreasureRoute, analytics: Treasure.TreasureAnalytics? = nil)
+  case dismissView(analytics: Treasure.TreasureAnalytics? = nil)
+  case pushView(Treasure.TreasureRoute, analytics: Treasure.TreasureAnalytics? = nil)
+  case popView(analytics: Treasure.TreasureAnalytics? = nil)
+  public struct OpenNativeRoute : Swift.Decodable {
+    public init(from decoder: Swift.Decoder) throws
+  }
+  public var analytics: Treasure.TreasureAnalytics? {
+    get
+  }
+  public func executeAction(params: Treasure.TreasureActionParameters)
+  public init(from decoder: Swift.Decoder) throws
+}
+extension Treasure.CornerRadius : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol PresentationProviding {
+  var presentation: Treasure.PresentationModel? { get }
+}
+public struct TreasureScreenStyle : Treasure.ElementStyle {
+  public let id: Swift.String
+  public let basicProps: Treasure.ElementStyleProps?
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct TreasureScreen : Swift.Decodable {
+  public let id: Swift.String
+  public let style: Swift.String?
+  public let name: Swift.String?
+  public let layout: Treasure.LayoutsPerFormFactor?
+  public let screenProperties: Treasure.TreasureScreenProperties?
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum ScreenModalType : Swift.String, Swift.Decodable {
+  case contextSheetFitted
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct TreasureScreenProperties : Swift.Decodable {
+  public let modalType: Treasure.ScreenModalType
+  public init(from decoder: Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers final public class TreasureDependency {
+  final public var treasureLogger: Treasure.TreasureLoggerType {
+    get
+    set
+  }
+  final public var environment: BlocksCore.Environment
+  final public var imageLoader: Treasure.TreasureImageLoadable?
+  final public var theme: Treasure.ThemeRegistrable?
+  public static let shared: Treasure.TreasureDependency
+  @objc deinit
+}
+public struct LayoutPopulatorResult {
+  public let navSections: [Epoxy.BarModeling]?
+  public let mainSections: [Epoxy.SectionModel]
+  public let footerSections: [Epoxy.BarModeling]?
+}
+public protocol TreasureLayoutPopulator {
+  func populate(layout: Treasure.SingleColumnLayout) -> Treasure.LayoutPopulatorResult
+}
+public enum TreasureAnalyticsType : Swift.String {
+  case eventLogging
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum AnyTreasureAnalytics : Swift.Decodable {
+  case eventLogging(Treasure.TreasureEventAnalytics)
+  case none
+  public init(from decoder: Swift.Decoder) throws
+  public var value: Treasure.TreasureAnalytics? {
+    get
+  }
+}
+public protocol TreasureAnalyticsDecoder {
+  func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyTreasureAnalytics
+}
+public struct UnsupportedAnalyticsDecoder : Treasure.TreasureAnalyticsDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyTreasureAnalytics
+}
+public struct EventLoggingAnalyticsDecoder : Treasure.TreasureAnalyticsDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyTreasureAnalytics
+}
+public enum AnyTreasureAnalyticsDecoder {
+}
+public struct Parser<Type> {
+}
+public enum ElementRenderModeling {
+  case item(Epoxy.ItemModeling)
+  case items([Epoxy.ItemModeling])
+  case groupItem(Epoxy.GroupItemModeling)
+  case barItem(Epoxy.BarModeling)
+  public var toItemModel: Epoxy.ItemModeling? {
+    get
+  }
+  public var toItemsModel: [Epoxy.ItemModeling]? {
+    get
+  }
+  public var toGroupModel: Epoxy.GroupItemModeling? {
+    get
+  }
+  public var toBarModel: Epoxy.BarModeling? {
+    get
+  }
+}
+public struct ElementBuilderIngredients<T> where T : Treasure.TreasureElement {
+  public let value: T
+  public let elementID: Swift.String?
+  public let renderType: Treasure.TreasureElementRenderType
+  public let blueprintData: Treasure.BlueprintElement?
+}
+public protocol TreasureUIElementBuilder {
+  func build(ingredients: Treasure.ElementBuilderIngredients<Treasure.LabelElement>) -> Treasure.ElementRenderModeling?
+  func build(ingredients: Treasure.ElementBuilderIngredients<Treasure.ImageElement>) -> Treasure.ElementRenderModeling?
+  func build(ingredients: Treasure.ElementBuilderIngredients<Treasure.ButtonElement>) -> Treasure.ElementRenderModeling?
+  func build(ingredients: Treasure.ElementBuilderIngredients<Treasure.DividerElement>) -> Treasure.ElementRenderModeling?
+  func build(ingredients: Treasure.ElementBuilderIngredients<Treasure.BasicListItemElement>) -> Treasure.ElementRenderModeling?
+  func build(ingredients: Treasure.ElementBuilderIngredients<Treasure.VGroupElement>) -> Treasure.ElementRenderModeling?
+  func build(ingredients: Treasure.ElementBuilderIngredients<Treasure.HGroupElement>) -> Treasure.ElementRenderModeling?
+  func build(ingredients: Treasure.ElementBuilderIngredients<Treasure.CardContainerElement>) -> Treasure.ElementRenderModeling?
+  func build(ingredients: Treasure.ElementBuilderIngredients<Treasure.NavBarElement>) -> Treasure.ElementRenderModeling?
+  func build(ingredients: Treasure.ElementBuilderIngredients<Treasure.BlueprintElement>) -> Treasure.ElementRenderModeling?
+  func build(ingredients: Treasure.ElementBuilderIngredients<Treasure.ContextElement>) -> Treasure.ElementRenderModeling?
+}
+public enum NVActivityIndicatorType : Swift.Int {
+  case circleStrokeSpin
+  case ballClipRotate
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public typealias FadeInAnimation = (UIKit.UIView) -> Swift.Void
+public typealias FadeOutAnimation = (UIKit.UIView, @escaping () -> Swift.Void) -> Swift.Void
+@objc @_Concurrency.MainActor(unsafe) final public class NVActivityIndicatorView : UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) public static var DEFAULT_TYPE: Treasure.NVActivityIndicatorType
+  @_Concurrency.MainActor(unsafe) public static var DEFAULT_COLOR: UIKit.UIColor
+  @_Concurrency.MainActor(unsafe) public static var DEFAULT_TEXT_COLOR: UIKit.UIColor
+  @_Concurrency.MainActor(unsafe) public static var DEFAULT_PADDING: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) public static var DEFAULT_BLOCKER_SIZE: CoreGraphics.CGSize
+  @_Concurrency.MainActor(unsafe) public static var DEFAULT_BLOCKER_DISPLAY_TIME_THRESHOLD: Swift.Int
+  @_Concurrency.MainActor(unsafe) public static var DEFAULT_BLOCKER_MINIMUM_DISPLAY_TIME: Swift.Int
+  @_Concurrency.MainActor(unsafe) public static var DEFAULT_BLOCKER_MESSAGE: Swift.String?
+  @_Concurrency.MainActor(unsafe) public static var DEFAULT_BLOCKER_MESSAGE_SPACING: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) public static var DEFAULT_BLOCKER_MESSAGE_FONT: UIKit.UIFont
+  @_Concurrency.MainActor(unsafe) public static var DEFAULT_BLOCKER_BACKGROUND_COLOR: UIKit.UIColor
+  @_Concurrency.MainActor(unsafe) public static var DEFAULT_FADE_IN_ANIMATION: (_ view: UIKit.UIView) -> Swift.Void
+  @_Concurrency.MainActor(unsafe) public static var DEFAULT_FADE_OUT_ANIMATION: (_ view: UIKit.UIView, _ complete: @escaping () -> Swift.Void) -> Swift.Void
+  @_Concurrency.MainActor(unsafe) final public var type: Treasure.NVActivityIndicatorType
+  @objc @IBInspectable @_Concurrency.MainActor(unsafe) final public var color: UIKit.UIColor
+  @objc @IBInspectable @_Concurrency.MainActor(unsafe) final public var padding: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) final public var isAnimating: Swift.Bool {
+    get
+  }
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @_Concurrency.MainActor(unsafe) public init(frame: CoreGraphics.CGRect, type: Treasure.NVActivityIndicatorType? = nil, color: UIKit.UIColor? = nil, padding: CoreGraphics.CGFloat? = nil, lineWidth: CoreGraphics.CGFloat = 3)
+  @_Concurrency.MainActor(unsafe) @objc override final public var intrinsicContentSize: CoreGraphics.CGSize {
+    @_Concurrency.MainActor(unsafe) @objc get
+  }
+  @_Concurrency.MainActor(unsafe) @objc override final public var bounds: CoreGraphics.CGRect {
+    @_Concurrency.MainActor(unsafe) @objc get
+    @_Concurrency.MainActor(unsafe) @objc set
+  }
+  @_Concurrency.MainActor(unsafe) final public func startAnimating()
+  @_Concurrency.MainActor(unsafe) final public func stopAnimating()
+  @_Concurrency.MainActor(unsafe) final public func presentSuccessAnimation()
+  @objc deinit
+}
+public protocol LogType {
+  var category: Swift.String { get }
+  var message: Swift.String { get }
+  var level: Treasure.LogLevel { get }
+}
+public enum LogLevel {
+  case error
+  case info
+  public static func == (a: Treasure.LogLevel, b: Treasure.LogLevel) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum Log {
+  case error(_: Swift.String)
+  case info(_: Swift.String)
+  case apiError(_: Swift.Error)
+  case network(_: Treasure.Log.Network)
+  case decode(_: Treasure.Log.Decoding)
+  case navigation(_: Treasure.Log.Navigator)
+  case cache(_: Treasure.Log.Cache)
+  case expression(_: Treasure.Log.Expression)
+  case customOperations(_: Treasure.Log.Operation)
+  case collection(_: Treasure.Log.Collection)
+  case generalError(error: Swift.Error)
+  public enum Decoding {
+    case decodingError(type: Swift.String)
+  }
+  public enum Network {
+    case httpRequest(request: Treasure.Log.NetworkRequest)
+    case httpResponse(response: Treasure.Log.NetworkResponse)
+    case couldNotBuildUrl(url: Swift.String)
+    case networkClientWasNotConfigured
+  }
+  public enum Navigator {
+    case didReceiveAction(Treasure.NavigateAction)
+    case unableToPrefetchWhenUrlIsExpression
+    case didNotFindDeepLinkScreen(path: Swift.String)
+    case routeDoesNotExistInTheCurrentStack(path: Swift.String)
+    case didNavigateToExternalUrl(path: Swift.String)
+    case invalidExternalUrl(path: Swift.String)
+    case unableToOpenExternalUrl(path: Swift.String)
+  }
+  public enum Cache {
+    case saveContext(description: Swift.String)
+    case loadPersistentStores(description: Swift.String)
+    case fetchData(description: Swift.String)
+    case removeData(description: Swift.String)
+    case clear(description: Swift.String)
+  }
+  public struct NetworkResponse {
+    public let data: Foundation.Data?
+    public let response: Foundation.URLResponse?
+    public var logMessage: Swift.String {
+      get
+    }
+    public init(data: Foundation.Data? = nil, response: Foundation.URLResponse? = nil)
+  }
+  public struct NetworkRequest {
+    public let url: Foundation.URLRequest?
+    public var logMessage: Swift.String {
+      get
+    }
+    public init(url: Foundation.URLRequest? = nil)
+  }
+  public enum Expression {
+    case invalidSyntax
+    public static func == (a: Treasure.Log.Expression, b: Treasure.Log.Expression) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public enum Operation {
+    case alreadyExists
+    case invalid(name: Swift.String)
+    case notFound
+  }
+  public enum Collection {
+    case templateNotFound(item: Swift.String)
+  }
+}
+extension Treasure.Log : Treasure.LogType {
+  public var category: Swift.String {
+    get
+  }
+  public var message: Swift.String {
+    get
+  }
+  public var level: Treasure.LogLevel {
+    get
+  }
+}
+public protocol RepresentableByParsableString : Swift.Decodable, Swift.Encodable, Swift.Equatable, Swift.RawRepresentable {
+  static var parser: Treasure.Parser<Self> { get }
+}
+extension Treasure.RepresentableByParsableString where Self.RawValue == Swift.String {
+  public init?(rawValue: Self.RawValue)
+}
+public protocol HostActionHandler : AnyObject {
+  func setContext(context: Treasure.Context)
+  func sdkActionDidComplete(actionIngredients: Treasure.ActionHandlerIngredients<Treasure.ElementsSDKAction>)
+  func showLoading()
+  func hideLoading()
+  func presentViewController(viewController: UIKit.UIViewController)
+  func dismissCurrentViewController(completion: Treasure.VoidCompletion?)
+}
+public protocol TreasureRootRouting : BlocksCore.ViewableRouting {
+  var rootNavigationController: UIKit.UINavigationController? { get }
+  var hostActionHandler: Treasure.HostActionHandler? { get }
+  func showShellApp(animated: Swift.Bool)
+  func showSinglePageApp(animated: Swift.Bool)
+}
+public struct ContextElement : Treasure.TreasureElement {
+  public let id: Swift.String
+  public let style: Treasure.Expression<Swift.String>?
+  public let items: Treasure.Expression<[Treasure.AnyTreasureElement]>?
+  public let supplementaryItems: Treasure.Expression<[Treasure.AnyTreasureElement]>?
+  public func buildUIElement(parameters: Treasure.TreasureElementParameters) -> Treasure.ElementRenderModeling?
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct HGroupElement : Treasure.TreasureElement {
+  public let id: Swift.String
+  public let style: Treasure.Expression<Swift.String>?
+  public let items: [Treasure.AnyTreasureElement]?
+  public let onPressAction: Treasure.AnyTreasureAction?
+  public func buildUIElement(parameters: Treasure.TreasureElementParameters) -> Treasure.ElementRenderModeling?
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Context : Swift.Equatable, Swift.Codable {
+  public let id: Swift.String
+  public let value: Treasure.DynamicObject
+  public init(id: Swift.String, value: Treasure.DynamicObject)
+  public static func == (a: Treasure.Context, b: Treasure.Context) -> Swift.Bool
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct LayoutMargins : Swift.Decodable {
+  public let values: [Swift.Double]
+  public init(values: [Swift.Double])
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum DynamicObject : Swift.Equatable, Swift.Hashable {
+  case empty
+  case bool(Swift.Bool)
+  case int(Swift.Int)
+  case double(Swift.Double)
+  case string(Swift.String)
+  case array([Treasure.DynamicObject])
+  case dictionary(Treasure.DynamicDictionary)
+  case expression(Treasure.ContextExpression)
+  public init<T>(_ object: T) where T : Swift.Encodable
+  public static func == (a: Treasure.DynamicObject, b: Treasure.DynamicObject) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public typealias DynamicDictionary = [Swift.String : Treasure.DynamicObject]
+extension Treasure.DynamicObject : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+  public func asAny() -> Any?
+  public func asDictionary() -> Treasure.DynamicDictionary
+  public func isEqualIgnoringAssociatedValues(_ anotherObject: Treasure.DynamicObject) -> Swift.Bool
+}
+extension Treasure.DynamicObject : Swift.Decodable {
+  public init(from decoder: Swift.Decoder) throws
+}
+extension Treasure.DynamicObject : Swift.Encodable {
+  public func encode(to encoder: Swift.Encoder) throws
+}
+extension UIKit.UIViewController {
+  @discardableResult
+  @_Concurrency.MainActor(unsafe) public func withNavigation() -> UIKit.UINavigationController
+  @discardableResult
+  @_Concurrency.MainActor(unsafe) public func withPresentation(_ presentation: UIKit.UIModalPresentationStyle) -> Self
+  @discardableResult
+  @_Concurrency.MainActor(unsafe) public func withTransition(_ transition: UIKit.UIModalTransitionStyle) -> Self
+  @discardableResult
+  @_Concurrency.MainActor(unsafe) public func withNavigationStyle(_ navigationStyle: Treasure.NavigationStyle) -> UIKit.UIViewController
+  @discardableResult
+  @_Concurrency.MainActor(unsafe) public func withStyles(navigation: Treasure.NavigationStyle, presentation: UIKit.UIModalPresentationStyle, transition: UIKit.UIModalTransitionStyle) -> UIKit.UIViewController
+}
+extension UIKit.UIViewController {
+  @_Concurrency.MainActor(unsafe) public func presentController(_ controller: UIKit.UIViewController, type: Treasure.PresentationType, animated: Swift.Bool = true, completion: (() -> Swift.Void)? = nil)
+}
+extension UIKit.UIViewController {
+  @_Concurrency.MainActor(unsafe) public func dismissController(animated: Swift.Bool = true, completion: (() -> Swift.Void)? = nil)
+}
+public struct DesignSystemStyle : Treasure.ElementStyle {
+  public let id: Swift.String
+  public let basicProps: Treasure.ElementStyleProps?
+  public init(from decoder: Swift.Decoder) throws
+}
+extension Treasure.TreasureView {
+  public init(context: Treasure.Context? = nil, screens: [Treasure.TreasureScreen], sections: [Treasure.TreasureSection], blueprints: [Treasure.TreasureElement], styles: [Treasure.ElementStyle])
+}
+public enum BottomLineVisibility : Swift.String, Swift.Decodable {
+  case hidden
+  case alwaysVisible
+  case visibleByContentOffset
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct NavBarElementStyle : Treasure.ElementStyle {
+  public let id: Swift.String
+  public let basicProps: Treasure.ElementStyleProps?
+  public let titleStyleId: Swift.String?
+  public let imageStyleId: Swift.String?
+  public let height: Swift.Double?
+  public let bottomLineColor: Swift.String?
+  public let bottomLineHeight: Swift.Double?
+  public let bottomLineVisibility: Treasure.BottomLineVisibility?
+  public init(id: Swift.String, basicProps: Treasure.ElementStyleProps? = nil, titleStyleId: Swift.String? = nil, imageStyleId: Swift.String? = nil, height: Swift.Double? = nil, bottomLineColor: Swift.String? = nil, bottomLineHeight: Swift.Double? = nil, bottomLineVisibility: Treasure.BottomLineVisibility? = nil)
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct NavBarElement : Treasure.TreasureElement {
+  public let id: Swift.String
+  public let style: Treasure.Expression<Swift.String>?
+  public let title: Treasure.Expression<Swift.String>?
+  public let image: Treasure.Expression<Treasure.TreasureImageSource>?
+  public init(id: Swift.String, style: Treasure.Expression<Swift.String>? = nil, title: Treasure.Expression<Swift.String>? = nil, image: Treasure.Expression<Treasure.TreasureImageSource>? = nil)
+  public func buildUIElement(parameters: Treasure.TreasureElementParameters) -> Treasure.ElementRenderModeling?
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum SystemThemeType {
+  case dark
+  case light
+  public static func == (a: Treasure.SystemThemeType, b: Treasure.SystemThemeType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+final public class ThemeComponent<T> {
+  final public let values: [Swift.String : [Treasure.SystemThemeType : T]]
+  public init(values: [Swift.String : [Treasure.SystemThemeType : T]])
+  @objc deinit
+}
+public protocol ThemeRegistrable {
+  var fonts: Treasure.ThemeComponent<UIKit.UIFont>? { get set }
+  var colors: Treasure.ThemeComponent<UIKit.UIColor>? { get set }
+  var images: Treasure.ThemeComponent<UIKit.UIImage>? { get set }
+  var styles: [Swift.String : Treasure.ElementStyle]? { get set }
+}
+public struct DividerElementStyle : Treasure.ElementStyle {
+  public let id: Swift.String
+  public let basicProps: Treasure.ElementStyleProps?
+  public let width: Swift.Double?
+  public let height: Swift.Double?
+  public let color: Swift.String?
+  public init(id: Swift.String, basicProps: Treasure.ElementStyleProps? = nil, width: Swift.Double? = nil, height: Swift.Double? = nil, color: Swift.String? = nil)
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct DividerElement : Treasure.TreasureElement {
+  public let style: Treasure.Expression<Swift.String>?
+  public let id: Swift.String
+  public func buildUIElement(parameters: Treasure.TreasureElementParameters) -> Treasure.ElementRenderModeling?
+  public init(from decoder: Swift.Decoder) throws
+}
+public protocol TreasureAnalytics : Swift.Decodable {
+  var loggingID: Swift.String { get }
+}
+public struct TreasureEventAnalytics : Treasure.TreasureAnalytics {
+  public let loggingID: Swift.String
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Binding {
+  public let context: Swift.String
+  public let path: Treasure.Path
+  public init(context: Swift.String, path: Treasure.Path)
+}
+extension Treasure.Binding : Treasure.RepresentableByParsableString {
+  public static let parser: Treasure.Parser<Treasure.Binding>
+  public var rawValue: Swift.String {
+    get
+  }
+  public typealias RawValue = Swift.String
+}
+public struct CornerRadius : Swift.Decodable {
+  public let topLeft: Swift.Double?
+  public let topRight: Swift.Double?
+  public let bottomLeft: Swift.Double?
+  public let bottomRight: Swift.Double?
+  public init(topLeft: Swift.Double? = nil, topRight: Swift.Double? = nil, bottomLeft: Swift.Double? = nil, bottomRight: Swift.Double? = nil)
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct ElementStyleProps : Swift.Decodable {
+  public let backgroundColor: Swift.String?
+  public let borderColor: Swift.String?
+  public let borderWidth: Swift.Double?
+  public let layoutMargins: Treasure.LayoutMargins?
+  public let cornerRadius: Swift.Double?
+  public let specificCornerRadius: Treasure.CornerRadius?
+  public init(backgroundColor: Swift.String? = nil, borderColor: Swift.String? = nil, borderWidth: Swift.Double? = nil, layoutMargins: Treasure.LayoutMargins? = nil, cornerRadius: Swift.Double? = nil, specificCornerRadius: Treasure.CornerRadius? = nil)
+  public init(from decoder: Swift.Decoder) throws
+}
+extension UIKit.UIViewController {
+  @nonobjc @_Concurrency.MainActor(unsafe) public func setPresentation(_ model: Treasure.PresentationModel?, animated: Swift.Bool)
+}
+extension UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) public func addShadow(size: CoreGraphics.CGSize = CGSize(width: 0, height: 4), radius: CoreGraphics.CGFloat = 20, shadowColor: UIKit.UIColor = UIColor(hexString: "#x878883")!, shadowOpacity: Swift.Float = 0.25, viewCornerRadius: CoreGraphics.CGFloat = 0)
+  @_Concurrency.MainActor(unsafe) public func dropShadow(shadowColor: UIKit.UIColor = UIColor(hexString: "#878883")!, fillColor _: UIKit.UIColor = UIColor.white, opacity: Swift.Float = 0.25, offset: CoreGraphics.CGSize = CGSize(width: 0.0, height: 4), radius: CoreGraphics.CGFloat = 4)
+  @_Concurrency.MainActor(unsafe) public func roundCorners(corners: UIKit.UIRectCorner, radius: CoreGraphics.CGFloat)
+}
+extension UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) public func addShadowCoreUI(size: CoreGraphics.CGSize = CGSize(width: 0, height: 10), radius: CoreGraphics.CGFloat = 20, shadowColor: UIKit.UIColor = .black, shadowOpacity: Swift.Float = 0.36, viewCornerRadius: CoreGraphics.CGFloat = 0)
+  @_Concurrency.MainActor(unsafe) public func addRoundedCorners(corners: UIKit.UIRectCorner, radius: CoreGraphics.CGFloat)
+  public struct Border : Swift.OptionSet {
+    public let rawValue: Swift.Int
+    public init(rawValue: Swift.Int)
+    public typealias ArrayLiteralElement = UIKit.UIView.Border
+    public typealias Element = UIKit.UIView.Border
+    public typealias RawValue = Swift.Int
+  }
+  @_Concurrency.MainActor(unsafe) public func setBorder(_ border: UIKit.UIView.Border, color: UIKit.UIColor, borderWidth: CoreGraphics.CGFloat)
+}
+extension QuartzCore.CALayer {
+  public func addShadow(size: CoreGraphics.CGSize = CGSize(width: 0, height: 4), radius: CoreGraphics.CGFloat = 8)
+}
+extension UIKit.UIColor {
+  public func toHexString() -> Swift.String
+}
+extension UIKit.UIImage {
+  public func resizeWithPercent(percentage: CoreGraphics.CGFloat) -> UIKit.UIImage?
+  public func jpegData(with resizePercentage: CoreGraphics.CGFloat, compressionQuality: CoreGraphics.CGFloat) -> Foundation.Data?
+}
+extension UIKit.UILabel {
+  @_Concurrency.MainActor(unsafe) public func setAttributedText(attributedText: Foundation.NSAttributedString, lineBreakMode: UIKit.NSLineBreakMode = NSLineBreakMode.byTruncatingTail)
+  @_Concurrency.MainActor(unsafe) public func sizeForSingleLine(minimumScaleFactor: CoreGraphics.CGFloat = 0.3)
+  @_Concurrency.MainActor(unsafe) public func sizeLabelText(adjustsFontSizeToFitWidth: Swift.Bool = true, allowsDefaultTighteningForTruncation: Swift.Bool = false, baselineAdjustment: UIKit.UIBaselineAdjustment = UIBaselineAdjustment.alignBaselines, minimumScaleFactor: CoreGraphics.CGFloat = 0.3, numberOfLines: Swift.Int = 1)
+}
+public struct VGroupElement : Treasure.TreasureElement {
+  public let id: Swift.String
+  public let style: Treasure.Expression<Swift.String>?
+  public let items: [Treasure.AnyTreasureElement]?
+  public func buildUIElement(parameters: Treasure.TreasureElementParameters) -> Treasure.ElementRenderModeling?
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct ButtonElementStyle : Treasure.ElementStyle {
+  public let id: Swift.String
+  public let basicProps: Treasure.ElementStyleProps?
+  public let textColor: Treasure.ColorSource?
+  public let textFont: Treasure.FontSource?
+  public let alignment: Treasure.TextLabelAlignment?
+  public let buttonHeight: Swift.Double?
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct ButtonElement : Treasure.TreasureElement {
+  public let id: Swift.String
+  public let title: Treasure.Expression<Swift.String>?
+  public let image: Treasure.Expression<Treasure.TreasureImageSource>?
+  public let style: Treasure.Expression<Swift.String>?
+  public func buildUIElement(parameters: Treasure.TreasureElementParameters) -> Treasure.ElementRenderModeling?
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum FontSource : Swift.Decodable {
+  case designSystem(Swift.String)
+  case provided(Treasure.FontData)
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct FontData : Swift.Decodable {
+  public init(from decoder: Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers final public class ElementStyleUIKitConverter {
+  public static let shared: Treasure.ElementStyleUIKitConverter
+  @objc deinit
+}
+extension Treasure.LayoutMargins {
+  public var inset: UIKit.UIEdgeInsets {
+    get
+  }
+  public var groupEdgeInsets: Epoxy.GroupEdgeInsets {
+    get
+  }
+  public var toNSDirectionalEdgeInsets: UIKit.NSDirectionalEdgeInsets {
+    get
+  }
+}
+extension Treasure.TextLabelAlignment {
+  public var toNSAlignment: UIKit.NSTextAlignment {
+    get
+  }
+}
+extension Treasure.ImageContentMode {
+  public var toUIViewMode: UIKit.UIView.ContentMode {
+    get
+  }
+}
+extension Treasure.HGroupContentAlignment {
+  public var alignment: Epoxy.HGroup.ItemAlignment {
+    get
+  }
+}
+extension Treasure.VGroupContentAlignment {
+  public var alignment: Epoxy.VGroup.ItemAlignment {
+    get
+  }
+}
+extension Treasure.CollectionSectionItemLayoutSize {
+  @available(iOS 13.0, *)
+  public func toNSCollectionLayoutDimension(forHeight: Swift.Bool) -> UIKit.NSCollectionLayoutDimension
+}
+extension Treasure.TreasureLayoutOrthogonalScrollingType {
+  @available(iOS 13.0, *)
+  public var toBehavior: UIKit.UICollectionLayoutSectionOrthogonalScrollingBehavior {
+    get
+  }
+}
+extension Treasure.FontData {
+  public var toUIFont: UIKit.UIFont {
+    get
+  }
+}
+extension Treasure.FontSource {
+  public var toUIFont: UIKit.UIFont {
+    get
+  }
+}
+extension Treasure.ColorSource {
+  public var toUIColor: UIKit.UIColor {
+    get
+  }
+}
+public protocol TreasureHostActionHandler : AnyObject {
+  func handle(externalAction: Treasure.ExternalAction)
+}
+public protocol TreasureHostSDKActionHandler : AnyObject {
+  func handle(sdkAction: Treasure.ActionHandlerIngredients<Treasure.ElementsSDKAction>)
+}
+final public class TreasureConfiguration {
+  final public let environment: BlocksCore.Environment
+  public init(environment: BlocksCore.Environment)
+  @objc deinit
+}
+final public class TreasureHost {
+  final public var rootNavigationController: UIKit.UINavigationController? {
+    get
+  }
+  final public var router: Treasure.TreasureRootRouting?
+  weak final public var hostActionHandler: Treasure.TreasureHostActionHandler?
+  weak final public var sdkActionHandler: Treasure.TreasureHostSDKActionHandler?
+  public init(configuration: Treasure.TreasureConfiguration)
+  final public func loadFromLocal(fileName: Swift.String) -> UIKit.UIViewController
+  final public func loadFromCheckoutUI(completion: @escaping (UIKit.UIViewController) -> Swift.Void)
+  final public func pushViewController(vc: UIKit.UIViewController)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) final public class HalfModalPresentationController : UIKit.UIPresentationController {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(presentedViewController: UIKit.UIViewController, presenting presentingViewController: UIKit.UIViewController?)
+  @_Concurrency.MainActor(unsafe) @objc override final public func presentationTransitionWillBegin()
+  @_Concurrency.MainActor(unsafe) @objc override final public func dismissalTransitionWillBegin()
+  @_Concurrency.MainActor(unsafe) @objc override final public var adaptivePresentationStyle: UIKit.UIModalPresentationStyle {
+    @_Concurrency.MainActor(unsafe) @objc get
+  }
+  @_Concurrency.MainActor(unsafe) @objc override final public var shouldPresentInFullscreen: Swift.Bool {
+    @_Concurrency.MainActor(unsafe) @objc get
+  }
+  @_Concurrency.MainActor(unsafe) @objc override final public func size(forChildContentContainer container: UIKit.UIContentContainer, withParentContainerSize parentSize: CoreGraphics.CGSize) -> CoreGraphics.CGSize
+  @_Concurrency.MainActor(unsafe) @objc override final public func containerViewWillLayoutSubviews()
+  @_Concurrency.MainActor(unsafe) @objc override final public var frameOfPresentedViewInContainerView: CoreGraphics.CGRect {
+    @_Concurrency.MainActor(unsafe) @objc get
+  }
+  @objc deinit
+}
+public struct FetchContextRequest : BlocksCore.BlocksAPIRequest {
+  public typealias ResponseType = Treasure.FetchContextResponse
+  public var path: Swift.String {
+    get
+  }
+  public var counter: Swift.UInt
+  public var method: BlocksCore.HttpMethod
+  public var queryParameters: [Foundation.URLQueryItem]
+  public var headers: [Swift.String : Swift.String]
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct FetchContextResponse : BlocksCore.BlocksAPIResponse {
+  public let context: Treasure.Context
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum TreasureActionType : Swift.String {
+  case sendRequest
+  case external
+  case sdk
+  case setContext
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum AnyTreasureAction : Swift.Decodable {
+  case navigate(Treasure.NavigateAction)
+  case sendRequest(Treasure.SendRequestAction)
+  case external(Treasure.ExternalAction)
+  case sdk(Treasure.ElementsSDKAction)
+  case setContext(Treasure.SetContextAction)
+  case none
+  public init(from decoder: Swift.Decoder) throws
+  public var value: Treasure.TreasureAction? {
+    get
+  }
+}
+public struct UnsupportedActionDecoder {
+}
+public struct NavigateActionDecoder {
+}
+public struct SendRequestActionDecoder {
+}
+public struct ExternalActionDecoder {
+}
+public struct SDKActionDecoder {
+}
+public struct SetContextActionDecoder {
+}
+public enum AnyTreasureActionDecoder {
+}
+public enum SectionRenderModeling {
+  case section(Epoxy.SectionModel)
+  case bars([Epoxy.BarModeling])
+  public var toSectionModel: Epoxy.SectionModel? {
+    get
+  }
+  public var toBarsModel: [Epoxy.BarModeling]? {
+    get
+  }
+}
+public struct SectionBuilderIngredients<T> where T : Treasure.TreasureSection {
+  public let value: T
+  public let sectionID: Swift.String?
+  public let renderType: Treasure.TreasureSectionRenderType
+}
+public protocol TreasureUISectionBuilder {
+  func build(ingredients: Treasure.SectionBuilderIngredients<Treasure.GeneralListContentSection>) -> Treasure.SectionRenderModeling?
+}
+public enum TextLabelAlignment : Swift.String, Swift.Codable {
+  case leading
+  case center
+  case trailing
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct LabelElementStyle : Treasure.ElementStyle {
+  public let id: Swift.String
+  public let basicProps: Treasure.ElementStyleProps?
+  public let textColor: Treasure.ColorSource?
+  public let textFont: Treasure.FontSource?
+  public let alignment: Treasure.TextLabelAlignment?
+  public let numberOfLines: Swift.Int?
+  public init(id: Swift.String, basicProps: Treasure.ElementStyleProps? = nil, textColor: Treasure.ColorSource? = nil, textFont: Treasure.FontSource? = nil, alignment: Treasure.TextLabelAlignment? = nil, numberOfLines: Swift.Int? = nil)
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct LabelElement : Treasure.TreasureElement {
+  public let id: Swift.String
+  public let title: Treasure.Expression<Swift.String>
+  public let style: Treasure.Expression<Swift.String>?
+  public init(id: Swift.String, title: Treasure.Expression<Swift.String>, style: Treasure.Expression<Swift.String>? = nil)
+  public func buildUIElement(parameters: Treasure.TreasureElementParameters) -> Treasure.ElementRenderModeling?
+  public init(from decoder: Swift.Decoder) throws
+}
+final public class ActivityData {
+  public init(size: CoreGraphics.CGSize? = nil, message: Swift.String? = nil, messageFont: UIKit.UIFont? = nil, messageSpacing: CoreGraphics.CGFloat? = nil, type: Treasure.NVActivityIndicatorType? = nil, color: UIKit.UIColor? = nil, padding: CoreGraphics.CGFloat? = nil, displayTimeThreshold: Swift.Int? = nil, minimumDisplayTime: Swift.Int? = nil, backgroundColor: UIKit.UIColor? = nil, textColor: UIKit.UIColor? = nil)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class NVActivityIndicatorPresenter {
+  public static let sharedInstance: Treasure.NVActivityIndicatorPresenter
+  final public var isAnimating: Swift.Bool {
+    get
+  }
+  final public func startAnimating(_ data: Treasure.ActivityData, _ fadeInAnimation: Treasure.FadeInAnimation?)
+  final public func stopAnimating(_ fadeOutAnimation: Treasure.FadeOutAnimation?)
+  final public func setMessage(_ message: Swift.String?)
+  @objc deinit
+}
+public enum NavigationStyle {
+  case none
+  case withNavigation
+  public static func == (a: Treasure.NavigationStyle, b: Treasure.NavigationStyle) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct PopoverConfig {
+  public enum Source {
+    case barButtonItem(UIKit.UIBarButtonItem)
+    case view(container: UIKit.UIView, frame: CoreGraphics.CGRect?)
+  }
+  public init(source: Treasure.PopoverConfig.Source, arrowDirection: UIKit.UIPopoverArrowDirection = .any, delegate: UIKit.UIPopoverPresentationControllerDelegate? = nil)
+}
+public enum PresentationType {
+  case modal(Treasure.NavigationStyle, UIKit.UIModalPresentationStyle, UIKit.UIModalTransitionStyle)
+  case popover(Treasure.PopoverConfig)
+  case push
+  case show
+  case showDetail(Treasure.NavigationStyle)
+  case custom(UIKit.UIViewControllerTransitioningDelegate)
+  case none
+}
+public protocol UIAnimator {
+  var defaultDuration: Foundation.TimeInterval { get }
+}
+extension Treasure.UIAnimator {
+  public var defaultDuration: Foundation.TimeInterval {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class DefaultAnimator : Treasure.UIAnimator {
+  public static let duration: Swift.Double
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class UpdateConstraintsAnimator : Treasure.UIAnimator {
+  final public func updateConstraints(containerView: UIKit.UIView)
+  final public func updateConstraints(containerView: UIKit.UIView, completion: ((Swift.Bool) -> Swift.Void)?)
+  final public func updateConstraints(containerView: UIKit.UIView, duration: Foundation.TimeInterval)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class BounceAnimator : Treasure.UIAnimator {
+  final public func bounce(containerView: UIKit.UIView, delay: Swift.Double = 0, completion: ((Swift.Bool) -> Swift.Void)? = nil)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class FadeInOutViewAnimator : Treasure.UIAnimator {
+  public static let defaultBorderWidthAnimKey: Swift.String
+  final public func animateToDisplay(view: UIKit.UIView, duration: Foundation.TimeInterval, completion: ((Swift.Bool) -> Swift.Void)?)
+  final public func animateToDismiss(view: UIKit.UIView, duration: Foundation.TimeInterval, completion: ((Swift.Bool) -> Swift.Void)?)
+  final public func fadeTransition(view: UIKit.UIView, _ duration: CoreFoundation.CFTimeInterval)
+  final public func fadeViewBorder(view: UIKit.UIView, from: CoreGraphics.CGFloat, to: CoreGraphics.CGFloat, duration: CoreFoundation.CFTimeInterval)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class SlideMenuAnimator : Treasure.UIAnimator {
+  final public func animateToDisplay(view: UIKit.UIView, finalFrame: CoreGraphics.CGRect, duration: Foundation.TimeInterval, completion: ((Swift.Bool) -> Swift.Void)?)
+  final public func animateToDismiss(view: UIKit.UIView, duration: Foundation.TimeInterval, completion: ((Swift.Bool) -> Swift.Void)?)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class ShakeAnimator : Treasure.UIAnimator {
+  public static let defaultShakeAnimKey: Swift.String
+  final public func shake(view: UIKit.UIView)
+  @objc deinit
+}
+final public class RotationAnimatior : Treasure.UIAnimator {
+  public static let defaultRotationKey: Swift.String
+  final public func animateRotation(view: UIKit.UIView, animationKey: Swift.String = RotationAnimatior.defaultRotationKey, repeatCount: Swift.Float = .infinity, delayForRound: Foundation.TimeInterval = 0.2, durationForRound: Foundation.TimeInterval = 2.2)
+  public init()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class PopMessageAnimator : Treasure.UIAnimator {
+  final public func animateForOpening(view: UIKit.UIView, startingScale: CoreGraphics.CGFloat = 0.3, duration: Foundation.TimeInterval = 0.7, completion: ((Swift.Bool) -> Swift.Void)? = nil)
+  final public func animateForEnding(view: UIKit.UIView, startingScale: CoreGraphics.CGFloat = 1, finalScale: CoreGraphics.CGFloat = 0.3, duration: Foundation.TimeInterval = 0.7, completion: ((Swift.Bool) -> Swift.Void)? = nil)
+  @objc deinit
+}
+public enum TreasureRoute : Swift.Decodable {
+  public struct NewPath : Swift.Decodable {
+    public struct HttpAdditionalData : Swift.Decodable {
+      public init(from decoder: Swift.Decoder) throws
+    }
+    public init(from decoder: Swift.Decoder) throws
+  }
+  case remote(Treasure.TreasureRoute.NewPath)
+  case screen(Swift.String)
+  case localFile(name: Swift.String)
+}
+extension Treasure.TreasureRoute {
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum ColorSource : Swift.Decodable {
+  case designSystem(Swift.String)
+  case hex(Swift.String)
+  public init(from decoder: Swift.Decoder) throws
+}
+extension CoreGraphics.CGSize : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension UIKit.UIEdgeInsets : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct PresentationModel {
+  public init(dataID: Swift.AnyHashable, presentation: Treasure.PresentationModel.Presentation, makeViewController: @escaping () -> UIKit.UIViewController?, dismiss: @escaping () -> Swift.Void)
+  public init<Params>(params: Params, dataID: Swift.AnyHashable, presentation: Treasure.PresentationModel.Presentation, makeViewController: @escaping (Params) -> UIKit.UIViewController?, dismiss: @escaping () -> Swift.Void) where Params : Swift.Equatable
+  public func didPresent(_ didPresent: @escaping (() -> Swift.Void)) -> Treasure.PresentationModel
+  public func didDismiss(_ didDismiss: @escaping (() -> Swift.Void)) -> Treasure.PresentationModel
+}
+extension Treasure.PresentationModel : Epoxy.Diffable {
+  public var diffIdentifier: Swift.AnyHashable {
+    get
+  }
+  public func isDiffableItemEqual(to otherDiffableItem: Epoxy.Diffable) -> Swift.Bool
+}
+extension Treasure.PresentationModel {
+  public init(dataID: Swift.AnyHashable, makePresentable: @escaping () -> Treasure.PresentationModel.Presentable?, dismiss: @escaping () -> Swift.Void)
+  public init<Params>(params: Params, dataID: Swift.AnyHashable, makePresentable: @escaping (Params) -> Treasure.PresentationModel.Presentable?, dismiss: @escaping () -> Swift.Void) where Params : Swift.Equatable
+}
+extension Treasure.PresentationModel {
+  public struct Presentation {
+    public init(present: @escaping (_ presented: UIKit.UIViewController) -> Treasure.PresentationModel.Presentable)
+    public struct Context {
+      public var presenting: UIKit.UIViewController
+      public var animated: Swift.Bool
+      public var didPresent: () -> Swift.Void
+      public var didDismiss: () -> Swift.Void
+    }
+    public var present: (_ presented: UIKit.UIViewController) -> Treasure.PresentationModel.Presentable
+  }
+  public typealias Presentable = (_ context: Treasure.PresentationModel.Presentation.Context) -> Treasure.PresentationModel.Dismissible
+  public typealias Dismissible = (_ animated: Swift.Bool, _ completion: (() -> Swift.Void)?) -> Swift.Void
+}
+extension Treasure.PresentationModel.Presentation {
+  public static var system: Treasure.PresentationModel.Presentation {
+    get
+  }
+  public static func customized(transitionDelegate: UIKit.UIViewControllerTransitioningDelegate) -> Treasure.PresentationModel.Presentation
+}
+public enum CollectionSectionItemLayoutSizeType : Swift.String, Swift.Decodable {
+  case fractional
+  case absolute
+  case estimated
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum TreasureLayoutOrthogonalScrollingType : Swift.String, Swift.Decodable {
+  case none
+  case continuous
+  case continuousGroupLeadingBoundary
+  case paging
+  case groupPaging
+  case groupPagingCentered
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum CollectionSectionItemLayoutSize : Swift.Decodable {
+  case fractional(percentage: Swift.Double)
+  case absolute(size: Swift.Double)
+  case estimated(size: Swift.Double)
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum TreasureSectionLayoutType : Swift.String, Swift.Decodable {
+  case list
+  case carousel
+  case carouselWithHeader
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct TreasureSectionLayoutData : Swift.Decodable {
+  public let type: Treasure.TreasureSectionLayoutType
+  public let itemWidth: Treasure.CollectionSectionItemLayoutSize?
+  public let itemHeight: Treasure.CollectionSectionItemLayoutSize?
+  public let sectionInsets: Treasure.LayoutMargins?
+  public let scrollType: Treasure.TreasureLayoutOrthogonalScrollingType?
+  public init(from decoder: Swift.Decoder) throws
+}
+extension UIKit.UIColor {
+  convenience public init?(red: Swift.Int, green: Swift.Int, blue: Swift.Int, transparency: CoreGraphics.CGFloat = 1)
+  convenience public init?(hex: Swift.Int, transparency: CoreGraphics.CGFloat = 1)
+  convenience public init?(hexString: Swift.String?)
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) open class FullScreenPresentableView : UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder _: Foundation.NSCoder)
+  @_Concurrency.MainActor(unsafe) open func show()
+  @_Concurrency.MainActor(unsafe) open func animateForOpening()
+  @_Concurrency.MainActor(unsafe) open func hide(duration: Foundation.TimeInterval = 0.15, completion: (() -> Swift.Void)? = nil)
+  @_Concurrency.MainActor(unsafe) open func cleanViews()
+  @_Concurrency.MainActor(unsafe) open func setupUI()
+  @_Concurrency.MainActor(unsafe) open func configureConstraints(_: UIKit.UIView)
+  @objc deinit
+}
+public enum TreasureImageType : Swift.String, Swift.Decodable {
+  case localImage
+  case imageURL
+  case lottieURL
+  case localLottie
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum TreasureImageSource : Swift.Decodable {
+  case staticImage(image: UIKit.UIImage)
+  case imageURL(url: Foundation.URL)
+  case lottieAnimationImage(url: Foundation.URL)
+  case lottieAnimation(named: Swift.String)
+  public init?(imageURL: Foundation.URL?)
+  public init(from decoder: Swift.Decoder) throws
+  public var getPotentialDownloadURL: Foundation.URL? {
+    get
+  }
+  public var getPotentialStaticImage: UIKit.UIImage? {
+    get
+  }
+}
+public enum FileWatcher {
+  public enum Error : Swift.Error {
+    case notStarted
+    case alreadyStarted
+    case alreadyStopped
+    case failedToStart(reason: Swift.String)
+  }
+  public enum RefreshResult {
+    case noChanges
+    case updated(data: Foundation.Data)
+  }
+  public typealias UpdateClosure = (Treasure.FileWatcher.RefreshResult) -> Swift.Void
+}
+public protocol FileWatcherProtocol {
+  func start(closure: @escaping Treasure.FileWatcher.UpdateClosure) throws
+  func stop() throws
+}
+public struct TreasureActionParameters {
+  public let handler: Treasure.TreasureActionHandler
+  public let context: Treasure.Context?
+  public func convertToIngredients<T>(action: T) -> Treasure.ActionHandlerIngredients<T> where T : Treasure.TreasureAction
+}
+public protocol TreasureAction : Swift.Decodable {
+  var analytics: Treasure.TreasureAnalytics? { get }
+  func executeAction(params: Treasure.TreasureActionParameters)
+}
+public struct ActionHandlerIngredients<T> where T : Treasure.TreasureAction {
+  public let value: T
+  public let context: Treasure.Context?
+}
+public protocol TreasureActionHandler : AnyObject {
+  func handle(navigateAction: Treasure.ActionHandlerIngredients<Treasure.NavigateAction>)
+  func handle(externalAction: Treasure.ActionHandlerIngredients<Treasure.ExternalAction>)
+  func handle(sdkAction: Treasure.ActionHandlerIngredients<Treasure.ElementsSDKAction>)
+  func handle(sendRequestAction: Treasure.ActionHandlerIngredients<Treasure.SendRequestAction>)
+  func handle(setContextAction: Treasure.ActionHandlerIngredients<Treasure.SetContextAction>)
+}
+extension Treasure.CornerRadius : Swift.Equatable {
+}
+public func == (lhs: Treasure.CornerRadius, rhs: Treasure.CornerRadius) -> Swift.Bool
+extension Treasure.TreasureImageSource : Swift.Equatable {
+}
+public func == (lhs: Treasure.TreasureImageSource, rhs: Treasure.TreasureImageSource) -> Swift.Bool
+extension Treasure.FileWatcher {
+  final public class Remote : Treasure.FileWatcherProtocol {
+    public init(url: Foundation.URL, refreshInterval: Foundation.TimeInterval = 1)
+    @objc deinit
+    final public func start(closure: @escaping Treasure.FileWatcher.UpdateClosure) throws
+    final public func stop() throws
+    @objc final public func refresh() throws
+  }
+}
+public enum Literal {
+  case int(Swift.Int)
+  case double(Swift.Double)
+  case bool(Swift.Bool)
+  case string(Swift.String)
+  case null
+}
+extension Treasure.Literal : Treasure.RepresentableByParsableString {
+  public static let parser: Treasure.Parser<Treasure.Literal>
+  public var rawValue: Swift.String {
+    get
+  }
+  public typealias RawValue = Swift.String
+}
+public protocol DependencyLogger {
+  var logger: Treasure.TreasureLoggerType { get }
+}
+public protocol TreasureLoggerType {
+  func log(_ log: Treasure.LogType)
+}
+public class TreasureLoggerProxy : Treasure.TreasureLoggerType {
+  final public let logger: Treasure.TreasureLoggerType?
+  public init(logger: Treasure.TreasureLoggerType?)
+  public func log(_ log: Treasure.LogType)
+  @objc deinit
+}
+public enum TreasureSectionRenderType {
+  case section
+  case bars
+  public static func == (a: Treasure.TreasureSectionRenderType, b: Treasure.TreasureSectionRenderType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct TreasureSectionParameters {
+  public var sectionId: Swift.String?
+  public let renderType: Treasure.TreasureSectionRenderType
+  public let builder: Treasure.TreasureUISectionBuilder
+  public func convertToIngredients<T>(section: T) -> Treasure.SectionBuilderIngredients<T> where T : Treasure.TreasureSection
+}
+public protocol TreasureSection : Swift.Decodable {
+  var id: Swift.String { get }
+  func buildUISection(parameters: Treasure.TreasureSectionParameters) -> Treasure.SectionRenderModeling?
+}
+public enum AnyTreasureSection : Swift.Decodable {
+  case generalListContent(Treasure.GeneralListContentSection)
+  case none
+  public init(from decoder: Swift.Decoder) throws
+  public var value: Treasure.TreasureSection? {
+    get
+  }
+}
+public struct BlueprintElement : Treasure.TreasureElement {
+  public let id: Swift.String
+  public let blueprintId: Swift.String
+  public let context: Treasure.Context
+  public let style: Treasure.Expression<Swift.String>?
+  public func buildUIElement(parameters: Treasure.TreasureElementParameters) -> Treasure.ElementRenderModeling?
+  public init(from decoder: Swift.Decoder) throws
+}
+public typealias VoidCompletion = (() -> Swift.Void)
+extension UIKit.UIViewController : BlocksCore.RouterPresentable {
+  @_Concurrency.MainActor(unsafe) public func toPresentable() -> UIKit.UIViewController
+}
+public enum Value {
+  case binding(Treasure.Binding)
+  case literal(Treasure.Literal)
+}
+extension Treasure.Value : Treasure.RepresentableByParsableString {
+  public static let parser: Treasure.Parser<Treasure.Value>
+  public var rawValue: Swift.String {
+    get
+  }
+  public typealias RawValue = Swift.String
+}
+public struct TitleSubtitleElementStyle : Treasure.ElementStyle {
+  public let id: Swift.String
+  public let basicProps: Treasure.ElementStyleProps?
+  public let verticalSpacing: Swift.Double?
+  public let alignment: Treasure.TextLabelAlignment?
+  public let titleStyleId: Swift.String
+  public let subtitleStyleId: Swift.String?
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct BasicListItemElementStyle : Treasure.ElementStyle {
+  public let id: Swift.String
+  public let basicProps: Treasure.ElementStyleProps?
+  public let imageStyleId: Swift.String?
+  public let trailingImageStyleId: Swift.String?
+  public let titleSubtitleStyleId: Swift.String?
+  public let hGroupAlignment: Treasure.HGroupContentAlignment?
+  public let hSpacing: Swift.Double?
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct BasicListItemElement : Treasure.TreasureElement {
+  public let id: Swift.String
+  public let style: Treasure.Expression<Swift.String>?
+  public let title: Treasure.Expression<Swift.String>
+  public let image: Treasure.Expression<Treasure.TreasureImageSource>?
+  public let trailingImage: Treasure.Expression<Treasure.TreasureImageSource>?
+  public let subtitle: Treasure.Expression<Swift.String>?
+  public let onPressAction: Treasure.Expression<Treasure.AnyTreasureAction>?
+  public func buildUIElement(parameters: Treasure.TreasureElementParameters) -> Treasure.ElementRenderModeling?
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum DynamicWidthNavigatorStyle {
+  case equalWidth
+  case widthByTitleLength
+  public static func == (a: Treasure.DynamicWidthNavigatorStyle, b: Treasure.DynamicWidthNavigatorStyle) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class DynamicWidthNavigatorView : UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) final public var titles: [Swift.String]
+  @_Concurrency.MainActor(unsafe) final public var internalBackgroundColor: UIKit.UIColor {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public static let height: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) final public var userSelectedIndex: ((Swift.Int) -> Swift.Void)?
+  @_Concurrency.MainActor(unsafe) public init(titles: [Swift.String], internalBackgroundColor: UIKit.UIColor? = nil, style: Treasure.DynamicWidthNavigatorStyle = .equalWidth)
+  @_Concurrency.MainActor(unsafe) final public func setupView(titles: [Swift.String], selectedIndex: Swift.Int, adjustScrollBar: Swift.Bool = false, containerWidth: CoreGraphics.CGFloat? = nil)
+  @_Concurrency.MainActor(unsafe) final public func selectCategory(index: Swift.Int, adjustScrollBar: Swift.Bool = true)
+  @_Concurrency.MainActor(unsafe) final public func animateScrollBarPosX(index: Swift.Int)
+  @_Concurrency.MainActor(unsafe) final public func adjustScrollBarPosition(offsetX: CoreGraphics.CGFloat)
+  @objc deinit
+}
+public struct CardContainerElementStyle : Treasure.ElementStyle {
+  public let id: Swift.String
+  public let basicProps: Treasure.ElementStyleProps?
+  public let cardCornerRadius: Swift.Double?
+  public let cardSpecificCornerRadius: Treasure.CornerRadius?
+  public let cardLayoutMargins: Treasure.LayoutMargins?
+  public let cardBackgroundColor: Swift.String?
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct CardContainerElement : Treasure.TreasureElement {
+  public let id: Swift.String
+  public let item: Treasure.TreasureElement?
+  public let backgroundBlurImage: Treasure.Expression<Treasure.TreasureImageSource>?
+  public let style: Treasure.Expression<Swift.String>?
+  public func buildUIElement(parameters: Treasure.TreasureElementParameters) -> Treasure.ElementRenderModeling?
+  public init(from decoder: Swift.Decoder) throws
+}
+public typealias OperationHandler = (_ parameters: [Treasure.DynamicObject]) -> Treasure.DynamicObject
+public struct Operation {
+  public let name: Swift.String
+  public let parameters: [Treasure.Operation.Parameter]
+  public enum Parameter : Swift.Equatable {
+    case operation(Treasure.Operation)
+    case value(Treasure.Value)
+    public static func == (a: Treasure.Operation.Parameter, b: Treasure.Operation.Parameter) -> Swift.Bool
+  }
+  public init(name: Swift.String, parameters: [Treasure.Operation.Parameter] = [])
+}
+extension Treasure.Operation : Treasure.RepresentableByParsableString {
+  public static let parser: Treasure.Parser<Treasure.Operation>
+  public var rawValue: Swift.String {
+    get
+  }
+  public typealias RawValue = Swift.String
+}
+public protocol TreasureLayout : Swift.Decodable {
+  func populate(using populator: Treasure.TreasureLayoutPopulator) -> Treasure.LayoutPopulatorResult
+}
+public enum TreasureLayoutType : Swift.String {
+  case singleColumn
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum AnyTreasureLayout : Swift.Decodable {
+  case singleColumn(Treasure.SingleColumnLayout)
+  case none
+  public init(from decoder: Swift.Decoder) throws
+  public var value: Treasure.TreasureLayout? {
+    get
+  }
+}
+public struct LayoutsPerFormFactor : Swift.Decodable {
+  public let compact: Treasure.AnyTreasureLayout?
+  public let wide: Treasure.AnyTreasureLayout?
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct SectionDetail : Swift.Decodable {
+  public let sectionId: Swift.String
+  public let topPadding: Swift.Int?
+  public let bottomPadding: Swift.Int?
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct SingleSectionPlacement : Swift.Decodable {
+  public let sectionDetail: Treasure.SectionDetail
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct MultipleSectionsPlacement : Swift.Decodable {
+  public let sectionDetails: [Treasure.SectionDetail]
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum VGroupContentAlignment : Swift.String, Swift.Decodable {
+  case leading
+  case center
+  case trailing
+  case fill
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum HGroupContentAlignment : Swift.String, Swift.Decodable {
+  case top
+  case center
+  case bottom
+  case fill
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct GroupElementStyle : Treasure.ElementStyle {
+  public let id: Swift.String
+  public let basicProps: Treasure.ElementStyleProps?
+  public let hGroupAlignment: Treasure.HGroupContentAlignment?
+  public let vGroupAlignment: Treasure.VGroupContentAlignment?
+  public let spacing: Swift.Double?
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum TreasureElementRenderType {
+  case item
+  case groupItem
+  case barItem
+  public static func == (a: Treasure.TreasureElementRenderType, b: Treasure.TreasureElementRenderType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct TreasureElementParameters {
+  public var elementID: Swift.String?
+  public let renderType: Treasure.TreasureElementRenderType
+  public let builder: Treasure.TreasureUIElementBuilder
+  public let blueprintData: Treasure.BlueprintElement?
+  public func convertToIngredients<T>(element: T) -> Treasure.ElementBuilderIngredients<T> where T : Treasure.TreasureElement
+}
+public protocol TreasureElement : Swift.Decodable {
+  var id: Swift.String { get }
+  var style: Treasure.Expression<Swift.String>? { get }
+  func buildUIElement(parameters: Treasure.TreasureElementParameters) -> Treasure.ElementRenderModeling?
+}
+public enum TreasureElementType : Swift.String {
+  case label
+  case image
+  case button
+  case basicListItem
+  case vGroup
+  case hGroup
+  case divider
+  case card
+  case navBar
+  case blueprint
+  case contextElement
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum AnyTreasureElement : Swift.Decodable {
+  case label(Treasure.LabelElement)
+  case image(Treasure.ImageElement)
+  case button(Treasure.ButtonElement)
+  case basicListItem(Treasure.BasicListItemElement)
+  case vGroup(Treasure.VGroupElement)
+  case hGroup(Treasure.HGroupElement)
+  case divider(Treasure.DividerElement)
+  case card(Treasure.CardContainerElement)
+  case navBar(Treasure.NavBarElement)
+  case blueprint(Treasure.BlueprintElement)
+  case contextElement(Treasure.ContextElement)
+  case none
+  public init(from decoder: Swift.Decoder) throws
+  public var value: Treasure.TreasureElement? {
+    get
+  }
+}
+public protocol TreasureElementDecoder {
+  func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyTreasureElement
+}
+public struct UnsupportedElementDecoder : Treasure.TreasureElementDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyTreasureElement
+}
+public struct TitleElementDecoder : Treasure.TreasureElementDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyTreasureElement
+}
+public struct ImageElementDecoder : Treasure.TreasureElementDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyTreasureElement
+}
+public struct ButtonElementDecoder : Treasure.TreasureElementDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyTreasureElement
+}
+public struct BasicListItemElementDecoder : Treasure.TreasureElementDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyTreasureElement
+}
+public struct DividerElementDecoder : Treasure.TreasureElementDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyTreasureElement
+}
+public struct VGroupElementDecoder : Treasure.TreasureElementDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyTreasureElement
+}
+public struct HGroupElementDecoder : Treasure.TreasureElementDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyTreasureElement
+}
+public struct CardContainerElementDecoder : Treasure.TreasureElementDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyTreasureElement
+}
+public struct NavBarElementDecoder : Treasure.TreasureElementDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyTreasureElement
+}
+public struct BlueprintElementDecoder : Treasure.TreasureElementDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyTreasureElement
+}
+public struct ContextElementDecoder : Treasure.TreasureElementDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyTreasureElement
+}
+public enum AnyTreasureElementDecoder {
+}
+public struct ElementsSDKAction : Treasure.TreasureAction {
+  public let analytics: Treasure.TreasureAnalytics?
+  public let actionType: Swift.String
+  public let data: Treasure.DynamicObject?
+  public let onSuccess: [Treasure.AnyTreasureAction]?
+  public let onError: [Treasure.AnyTreasureAction]?
+  public let onFinish: [Treasure.AnyTreasureAction]?
+  public init(from decoder: Swift.Decoder) throws
+  public func executeAction(params: Treasure.TreasureActionParameters)
+}
+public typealias StringOrExpression = Swift.String
+public enum Expression<T> where T : Swift.Decodable {
+  case value(T)
+  case expression(Treasure.ContextExpression)
+}
+public enum ContextExpression : Swift.Hashable {
+  case single(Treasure.SingleExpression)
+  case multiple(Treasure.MultipleExpression)
+}
+public enum SingleExpression : Swift.Hashable {
+  case value(Treasure.Value)
+  case operation(Treasure.Operation)
+}
+public struct MultipleExpression : Swift.Hashable {
+  public let nodes: [Treasure.MultipleExpression.Node]
+  public enum Node : Swift.Equatable {
+    case string(Swift.String)
+    case expression(Treasure.SingleExpression)
+    public static func == (a: Treasure.MultipleExpression.Node, b: Treasure.MultipleExpression.Node) -> Swift.Bool
+  }
+  public init(nodes: [Treasure.MultipleExpression.Node])
+}
+extension Treasure.ContextExpression : Treasure.RepresentableByParsableString {
+  public static var parser: Treasure.Parser<Treasure.ContextExpression>
+  public var rawValue: Swift.String {
+    get
+  }
+  public typealias RawValue = Swift.String
+}
+extension Treasure.SingleExpression : Treasure.RepresentableByParsableString {
+  public static let parser: Treasure.Parser<Treasure.SingleExpression>
+  public var rawValue: Swift.String {
+    get
+  }
+  public typealias RawValue = Swift.String
+}
+extension Treasure.MultipleExpression : Treasure.RepresentableByParsableString {
+  public static let parser: Treasure.Parser<Treasure.MultipleExpression>
+  public var rawValue: Swift.String {
+    get
+  }
+  public typealias RawValue = Swift.String
+}
+extension Treasure.Expression : Swift.ExpressibleByStringLiteral {
+  public init(stringLiteral value: Swift.String)
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
+  public typealias StringLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.String
+}
+extension Treasure.Expression : Swift.ExpressibleByStringInterpolation {
+  public typealias StringInterpolation = Swift.DefaultStringInterpolation
+}
+extension Treasure.Expression : Swift.ExpressibleByIntegerLiteral where T == Swift.Int {
+  public init(integerLiteral value: Swift.Int)
+  public typealias IntegerLiteralType = Swift.Int
+}
+extension Treasure.Expression : Swift.ExpressibleByFloatLiteral where T == Swift.Float {
+  public init(floatLiteral value: Swift.Float)
+  public typealias FloatLiteralType = Swift.Float
+}
+extension Treasure.Expression : Swift.ExpressibleByBooleanLiteral where T == Swift.Bool {
+  public init(booleanLiteral value: Swift.BooleanLiteralType)
+  public typealias BooleanLiteralType = Swift.BooleanLiteralType
+}
+extension Treasure.Expression : Swift.Equatable where T : Swift.Equatable {
+  public static func == (lhs: Treasure.Expression<T>, rhs: Treasure.Expression<T>) -> Swift.Bool
+}
+extension Treasure.Expression : Swift.Decodable {
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct GeneralListContentSection : Treasure.TreasureSection {
+  public struct Content : Swift.Decodable {
+    public let items: [Treasure.AnyTreasureElement]
+    public let title: Swift.String?
+    public let subtitle: Swift.String?
+    public init(from decoder: Swift.Decoder) throws
+  }
+  public let id: Swift.String
+  public let type: Swift.String
+  public let section: Treasure.GeneralListContentSection.Content
+  public let title: Swift.String?
+  public let layout: Treasure.TreasureSectionLayoutData?
+  public init(id: Swift.String, type: Swift.String, section: Treasure.GeneralListContentSection.Content, title: Swift.String? = nil, layout: Treasure.TreasureSectionLayoutData? = nil)
+  public func buildUISection(parameters: Treasure.TreasureSectionParameters) -> Treasure.SectionRenderModeling?
+  public init(from decoder: Swift.Decoder) throws
+}
+public protocol TreasureImageLoadable : AnyObject {
+  func setImage(imageView: UIKit.UIImageView, placeHolder: UIKit.UIImage?, url: Foundation.URL, completion: (() -> Swift.Void)?)
+  func getImage(url: Foundation.URL, completion: ((UIKit.UIImage?) -> Swift.Void)?)
+  func createAnimationView(url: Foundation.URL, imageMode: UIKit.UIView.ContentMode, completion: ((Swift.Error?) -> Swift.Void)?) -> UIKit.UIView
+  func createAnimationView(animationName: Swift.String, imageMode: UIKit.UIView.ContentMode) -> UIKit.UIView
+  func playAnimationImage(view: UIKit.UIView)
+}
+public struct SendRequestAction : Treasure.TreasureAction {
+  public let url: Treasure.Expression<Swift.String>
+  public let analytics: Treasure.TreasureAnalytics?
+  public let method: Treasure.Expression<BlocksCore.HttpMethod>?
+  public let data: Treasure.DynamicObject?
+  public let headers: Treasure.Expression<[Swift.String : Swift.String]>?
+  public let showLoading: Treasure.Expression<Swift.Bool>?
+  public let onSuccess: [Treasure.AnyTreasureAction]?
+  public let onError: [Treasure.AnyTreasureAction]?
+  public let onFinish: [Treasure.AnyTreasureAction]?
+  public init(from decoder: Swift.Decoder) throws
+  public func executeAction(params: Treasure.TreasureActionParameters)
+}
+public struct SingleColumnLayout : Treasure.TreasureLayout {
+  public let nav: Treasure.MultipleSectionsPlacement?
+  public let main: Treasure.MultipleSectionsPlacement
+  public let floatingFooter: Treasure.MultipleSectionsPlacement?
+  public func populate(using populator: Treasure.TreasureLayoutPopulator) -> Treasure.LayoutPopulatorResult
+  public init(from decoder: Swift.Decoder) throws
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) open class VisualEffectView : UIKit.UIVisualEffectView {
+  @_Concurrency.MainActor(unsafe) open var colorTint: UIKit.UIColor? {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) open var colorTintAlpha: CoreGraphics.CGFloat {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) open var blurRadius: CoreGraphics.CGFloat {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) open var scale: CoreGraphics.CGFloat {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(effect: UIKit.UIVisualEffect?)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class LoadingFullScreenHUD : Treasure.FullScreenPresentableView {
+  @_Concurrency.MainActor(unsafe) final public let nvIndicatorContainerView: UIKit.UIView
+  @_Concurrency.MainActor(unsafe) final public let nvIndicatorView: Treasure.NVActivityIndicatorView
+  @_Concurrency.MainActor(unsafe) final public var minEndPresentingTime: Foundation.Date
+  @_Concurrency.MainActor(unsafe) final public func show(minDisplayTime: Foundation.TimeInterval = 1)
+  @_Concurrency.MainActor(unsafe) override final public func animateForOpening()
+  @_Concurrency.MainActor(unsafe) override final public func hide(duration: Foundation.TimeInterval = 0.15, completion: (() -> Swift.Void)?)
+  @_Concurrency.MainActor(unsafe) override final public func setupUI()
+  @objc deinit
+}
+public enum TreasureSectionType : Swift.String {
+  case generalListContent
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public protocol TreasureSectionDecoder {
+  func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyTreasureSection
+}
+public struct UnsupportedSectionDecoder : Treasure.TreasureSectionDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyTreasureSection
+}
+public struct GeneralListContentSectionDecoder : Treasure.TreasureSectionDecoder {
+  public func decode(from decoder: Swift.Decoder) throws -> Treasure.AnyTreasureSection
+}
+public enum AnyTreasureSectionDecoder {
+}
+public struct Path {
+  public let nodes: [Treasure.Path.Node]
+  public enum Node : Swift.Equatable {
+    case key(Swift.String)
+    case index(Swift.Int)
+    public static func == (a: Treasure.Path.Node, b: Treasure.Path.Node) -> Swift.Bool
+  }
+  public init(nodes: [Treasure.Path.Node])
+}
+extension Treasure.Path : Treasure.RepresentableByParsableString {
+  public static let parser: Treasure.Parser<Treasure.Path>
+  public var rawValue: Swift.String {
+    get
+  }
+  public typealias RawValue = Swift.String
+}
+extension UIKit.UINavigationController {
+  @_Concurrency.MainActor(unsafe) public func push(_ viewController: UIKit.UIViewController, animated: Swift.Bool = true, completion: (() -> Swift.Void)? = nil)
+  @_Concurrency.MainActor(unsafe) public func pop(animated: Swift.Bool = true, completion: (() -> Swift.Void)? = nil)
+}
+extension Treasure.SwipeButtonDisplayMode : Swift.Equatable {}
+extension Treasure.SwipeButtonDisplayMode : Swift.Hashable {}
+extension Treasure.SwipeButtonStyle : Swift.Equatable {}
+extension Treasure.SwipeButtonStyle : Swift.Hashable {}
+extension Treasure.SwipeActionDescriptor : Swift.Equatable {}
+extension Treasure.SwipeActionDescriptor : Swift.Hashable {}
+extension Treasure.ImageContentMode : Swift.Equatable {}
+extension Treasure.ImageContentMode : Swift.Hashable {}
+extension Treasure.ImageContentMode : Swift.RawRepresentable {}
+extension Treasure.ElementStyleType : Swift.Equatable {}
+extension Treasure.ElementStyleType : Swift.Hashable {}
+extension Treasure.ElementStyleType : Swift.RawRepresentable {}
+extension Treasure.PresentationStyle : Swift.Equatable {}
+extension Treasure.PresentationStyle : Swift.Hashable {}
+extension Treasure.PresentationStyle : Swift.RawRepresentable {}
+extension Treasure.ScreenModalType : Swift.Equatable {}
+extension Treasure.ScreenModalType : Swift.Hashable {}
+extension Treasure.ScreenModalType : Swift.RawRepresentable {}
+extension Treasure.TreasureAnalyticsType : Swift.Equatable {}
+extension Treasure.TreasureAnalyticsType : Swift.Hashable {}
+extension Treasure.TreasureAnalyticsType : Swift.RawRepresentable {}
+extension Treasure.NVActivityIndicatorType : Swift.Equatable {}
+extension Treasure.NVActivityIndicatorType : Swift.Hashable {}
+extension Treasure.NVActivityIndicatorType : Swift.RawRepresentable {}
+extension Treasure.LogLevel : Swift.Equatable {}
+extension Treasure.LogLevel : Swift.Hashable {}
+extension Treasure.Log.Expression : Swift.Equatable {}
+extension Treasure.Log.Expression : Swift.Hashable {}
+extension Treasure.BottomLineVisibility : Swift.Equatable {}
+extension Treasure.BottomLineVisibility : Swift.Hashable {}
+extension Treasure.BottomLineVisibility : Swift.RawRepresentable {}
+extension Treasure.SystemThemeType : Swift.Equatable {}
+extension Treasure.SystemThemeType : Swift.Hashable {}
+extension Treasure.TextLabelAlignment : Swift.Equatable {}
+extension Treasure.TextLabelAlignment : Swift.Hashable {}
+extension Treasure.TextLabelAlignment : Swift.RawRepresentable {}
+extension Treasure.HGroupContentAlignment : Swift.Equatable {}
+extension Treasure.HGroupContentAlignment : Swift.Hashable {}
+extension Treasure.HGroupContentAlignment : Swift.RawRepresentable {}
+extension Treasure.VGroupContentAlignment : Swift.Equatable {}
+extension Treasure.VGroupContentAlignment : Swift.Hashable {}
+extension Treasure.VGroupContentAlignment : Swift.RawRepresentable {}
+extension Treasure.TreasureLayoutOrthogonalScrollingType : Swift.Equatable {}
+extension Treasure.TreasureLayoutOrthogonalScrollingType : Swift.Hashable {}
+extension Treasure.TreasureLayoutOrthogonalScrollingType : Swift.RawRepresentable {}
+extension Treasure.TreasureActionType : Swift.Equatable {}
+extension Treasure.TreasureActionType : Swift.Hashable {}
+extension Treasure.TreasureActionType : Swift.RawRepresentable {}
+extension Treasure.NavigationStyle : Swift.Equatable {}
+extension Treasure.NavigationStyle : Swift.Hashable {}
+extension Treasure.CollectionSectionItemLayoutSizeType : Swift.Equatable {}
+extension Treasure.CollectionSectionItemLayoutSizeType : Swift.Hashable {}
+extension Treasure.CollectionSectionItemLayoutSizeType : Swift.RawRepresentable {}
+extension Treasure.TreasureSectionLayoutType : Swift.Equatable {}
+extension Treasure.TreasureSectionLayoutType : Swift.Hashable {}
+extension Treasure.TreasureSectionLayoutType : Swift.RawRepresentable {}
+extension Treasure.TreasureImageType : Swift.Equatable {}
+extension Treasure.TreasureImageType : Swift.Hashable {}
+extension Treasure.TreasureImageType : Swift.RawRepresentable {}
+extension Treasure.TreasureSectionRenderType : Swift.Equatable {}
+extension Treasure.TreasureSectionRenderType : Swift.Hashable {}
+extension Treasure.DynamicWidthNavigatorStyle : Swift.Equatable {}
+extension Treasure.DynamicWidthNavigatorStyle : Swift.Hashable {}
+extension Treasure.TreasureLayoutType : Swift.Equatable {}
+extension Treasure.TreasureLayoutType : Swift.Hashable {}
+extension Treasure.TreasureLayoutType : Swift.RawRepresentable {}
+extension Treasure.TreasureElementRenderType : Swift.Equatable {}
+extension Treasure.TreasureElementRenderType : Swift.Hashable {}
+extension Treasure.TreasureElementType : Swift.Equatable {}
+extension Treasure.TreasureElementType : Swift.Hashable {}
+extension Treasure.TreasureElementType : Swift.RawRepresentable {}
+extension Treasure.TreasureSectionType : Swift.Equatable {}
+extension Treasure.TreasureSectionType : Swift.Hashable {}
+extension Treasure.TreasureSectionType : Swift.RawRepresentable {}
