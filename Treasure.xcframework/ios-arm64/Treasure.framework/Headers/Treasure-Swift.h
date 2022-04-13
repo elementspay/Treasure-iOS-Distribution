@@ -363,7 +363,7 @@ SWIFT_CLASS("_TtC8Treasure14CollectionView")
 SWIFT_CLASS("_TtC8Treasure18CollectionViewCell")
 @interface CollectionViewCell : UICollectionViewCell
 - (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER SWIFT_UNAVAILABLE;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)_ OBJC_DESIGNATED_INITIALIZER SWIFT_UNAVAILABLE;
 @property (nonatomic, getter=isSelected) BOOL selected;
 @property (nonatomic, getter=isHighlighted) BOOL highlighted;
 - (UICollectionViewLayoutAttributes * _Nonnull)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes * _Nonnull)layoutAttributes SWIFT_WARN_UNUSED_RESULT;
@@ -558,6 +558,8 @@ SWIFT_CLASS("_TtC8Treasure15TopBarInstaller")
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
+
+
 
 
 

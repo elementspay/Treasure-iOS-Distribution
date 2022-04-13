@@ -18,7 +18,7 @@
 		</data>
 		<key>ios-arm64/Treasure.framework/Headers/Treasure-Swift.h</key>
 		<data>
-		LL1J1Kg/ms7d9kTd+8y+tLGYtO8=
+		Dfu/+yOxTOEmPFDRq0x2lCYLjsk=
 		</data>
 		<key>ios-arm64/Treasure.framework/Headers/Treasure.h</key>
 		<data>
@@ -26,23 +26,23 @@
 		</data>
 		<key>ios-arm64/Treasure.framework/Info.plist</key>
 		<data>
-		+MAnor4Pvnnl8ptTZrNJ8mhHvU0=
+		k1AC36swTa/TNFbSEmEASistNtw=
 		</data>
 		<key>ios-arm64/Treasure.framework/Modules/Treasure.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
-		+AA3ZcfKFp7aPSQl6NLAwQV7B0E=
+		9R57z64nMbeuqhl7yZ+/jOsstu8=
 		</data>
 		<key>ios-arm64/Treasure.framework/Modules/Treasure.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		ek44w8FcR3c2+E3jyDfIge4rLZk=
+		bKEw7bUaZSAjd1rm1VFdZ11bW7o=
 		</data>
 		<key>ios-arm64/Treasure.framework/Modules/Treasure.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		+AA3ZcfKFp7aPSQl6NLAwQV7B0E=
+		9R57z64nMbeuqhl7yZ+/jOsstu8=
 		</data>
 		<key>ios-arm64/Treasure.framework/Modules/Treasure.swiftmodule/arm64.swiftinterface</key>
 		<data>
-		ek44w8FcR3c2+E3jyDfIge4rLZk=
+		bKEw7bUaZSAjd1rm1VFdZ11bW7o=
 		</data>
 		<key>ios-arm64/Treasure.framework/Modules/module.modulemap</key>
 		<data>
@@ -50,11 +50,11 @@
 		</data>
 		<key>ios-arm64/Treasure.framework/Treasure</key>
 		<data>
-		hC96viyBUB8BWIga286hEs6zPZA=
+		azWduOI0+FhbwzWpohHpWhwflM4=
 		</data>
 		<key>ios-arm64/Treasure.framework/_CodeSignature/CodeResources</key>
 		<data>
-		xnzvnnbLCWNnKzn4t/wUgkMKcCs=
+		D38FfJdPlgIzFNZ9SA/4ztio+vk=
 		</data>
 		<key>ios-arm64/Treasure.framework/en.lproj/Localizable.strings</key>
 		<dict>
@@ -65,59 +65,75 @@
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>ios-x86_64-simulator/Treasure.framework/AutoEquatable.stencil</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/AutoEquatable.stencil</key>
 		<data>
 		EiVGkCa3oCdu2cmyYAkXsNfsou4=
 		</data>
-		<key>ios-x86_64-simulator/Treasure.framework/AutoHashable.stencil</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/AutoHashable.stencil</key>
 		<data>
 		wWuua+K+AMSE2ZHm/l5iSyXvpJk=
 		</data>
-		<key>ios-x86_64-simulator/Treasure.framework/AutoInit.stencil</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/AutoInit.stencil</key>
 		<data>
 		kPuwj4QnCvTzeGeUFhwduQxkGuY=
 		</data>
-		<key>ios-x86_64-simulator/Treasure.framework/Headers/Treasure-Swift.h</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Headers/Treasure-Swift.h</key>
 		<data>
-		LL1J1Kg/ms7d9kTd+8y+tLGYtO8=
+		X+/NNFk/w/TcleV8AdbM/ueVi8Q=
 		</data>
-		<key>ios-x86_64-simulator/Treasure.framework/Headers/Treasure.h</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Headers/Treasure.h</key>
 		<data>
 		ipQsdXlI8saPhMDyyyFOAw3L+oA=
 		</data>
-		<key>ios-x86_64-simulator/Treasure.framework/Info.plist</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Info.plist</key>
 		<data>
-		91AyiQngF8btz2JmmoKKNKeLt78=
+		jT77Yo4RvOwoZBFJ3ZzrUQVKHuQ=
 		</data>
-		<key>ios-x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		R60Fo0ujhS4B/V19kM+80cK3jVY=
+		D/REVtxXJ3/j5XZbYzFLfBaqSVA=
 		</data>
-		<key>ios-x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		xertLNLRNCU+QtgAXKHbNyAuKrU=
+		lAC19O1eQoMjzzV/mc+k5YvKWr4=
 		</data>
-		<key>ios-x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/x86_64.swiftdoc</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		R60Fo0ujhS4B/V19kM+80cK3jVY=
+		D/REVtxXJ3/j5XZbYzFLfBaqSVA=
 		</data>
-		<key>ios-x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/x86_64.swiftinterface</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/arm64.swiftinterface</key>
 		<data>
-		xertLNLRNCU+QtgAXKHbNyAuKrU=
+		lAC19O1eQoMjzzV/mc+k5YvKWr4=
 		</data>
-		<key>ios-x86_64-simulator/Treasure.framework/Modules/module.modulemap</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<data>
+		h9qrYctk0QAJkh9Q2+4iFNhw7Qw=
+		</data>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
+		<data>
+		JousTTRMj1y2tyn4lQytU3QmFjw=
+		</data>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/x86_64.swiftdoc</key>
+		<data>
+		h9qrYctk0QAJkh9Q2+4iFNhw7Qw=
+		</data>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/x86_64.swiftinterface</key>
+		<data>
+		JousTTRMj1y2tyn4lQytU3QmFjw=
+		</data>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Modules/module.modulemap</key>
 		<data>
 		ox3syNLzSb5/GME8495fjh117No=
 		</data>
-		<key>ios-x86_64-simulator/Treasure.framework/Treasure</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Treasure</key>
 		<data>
-		BGrpT31Vz53YxNyK73ifD+wISLM=
+		Jcr7aOXwPnFD3W5idCZHM/uF8c8=
 		</data>
-		<key>ios-x86_64-simulator/Treasure.framework/_CodeSignature/CodeResources</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/_CodeSignature/CodeResources</key>
 		<data>
-		1l4WcLTqVccQ72tZUWW6/9WUMpU=
+		EwpXN1L4v6C3kEba1CNWSY64p7U=
 		</data>
-		<key>ios-x86_64-simulator/Treasure.framework/en.lproj/Localizable.strings</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/en.lproj/Localizable.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
@@ -166,11 +182,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			LL1J1Kg/ms7d9kTd+8y+tLGYtO8=
+			Dfu/+yOxTOEmPFDRq0x2lCYLjsk=
 			</data>
 			<key>hash2</key>
 			<data>
-			mdPxQQ/qfZdCzQowF1JQY7iuVKB/Csufak2kX/e7pYo=
+			5UhPqBXYO7ctp1uHyqbFTEjVMgNYB2f6HtcyN/37MZA=
 			</data>
 		</dict>
 		<key>ios-arm64/Treasure.framework/Headers/Treasure.h</key>
@@ -188,55 +204,55 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			+MAnor4Pvnnl8ptTZrNJ8mhHvU0=
+			k1AC36swTa/TNFbSEmEASistNtw=
 			</data>
 			<key>hash2</key>
 			<data>
-			zaVo09RM+S9dncu16Kzz9RgTZCUuwpRVbEkmR6pJqE4=
+			QiPeVK9iN0OWlYsw08pxhOFbIAjgkDdG4b6rEabWGcY=
 			</data>
 		</dict>
 		<key>ios-arm64/Treasure.framework/Modules/Treasure.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			+AA3ZcfKFp7aPSQl6NLAwQV7B0E=
+			9R57z64nMbeuqhl7yZ+/jOsstu8=
 			</data>
 			<key>hash2</key>
 			<data>
-			mT+wSoqlZda3iVy+FOZITVcOUj9rNtHOMD3owpwhkFA=
+			fVMD3exdyy3KK6awfChJy4r0J1BBldXPEaOhmKw0yk4=
 			</data>
 		</dict>
 		<key>ios-arm64/Treasure.framework/Modules/Treasure.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ek44w8FcR3c2+E3jyDfIge4rLZk=
+			bKEw7bUaZSAjd1rm1VFdZ11bW7o=
 			</data>
 			<key>hash2</key>
 			<data>
-			drpOJdKHgpAFHXWiKoVN5kMjHjDN1fbkx2HUpG6xRaA=
+			KOwmHETT1WqERc03fzdlsCoKtSKw8AGW1dnmprNBh/k=
 			</data>
 		</dict>
 		<key>ios-arm64/Treasure.framework/Modules/Treasure.swiftmodule/arm64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			+AA3ZcfKFp7aPSQl6NLAwQV7B0E=
+			9R57z64nMbeuqhl7yZ+/jOsstu8=
 			</data>
 			<key>hash2</key>
 			<data>
-			mT+wSoqlZda3iVy+FOZITVcOUj9rNtHOMD3owpwhkFA=
+			fVMD3exdyy3KK6awfChJy4r0J1BBldXPEaOhmKw0yk4=
 			</data>
 		</dict>
 		<key>ios-arm64/Treasure.framework/Modules/Treasure.swiftmodule/arm64.swiftinterface</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ek44w8FcR3c2+E3jyDfIge4rLZk=
+			bKEw7bUaZSAjd1rm1VFdZ11bW7o=
 			</data>
 			<key>hash2</key>
 			<data>
-			drpOJdKHgpAFHXWiKoVN5kMjHjDN1fbkx2HUpG6xRaA=
+			KOwmHETT1WqERc03fzdlsCoKtSKw8AGW1dnmprNBh/k=
 			</data>
 		</dict>
 		<key>ios-arm64/Treasure.framework/Modules/module.modulemap</key>
@@ -254,22 +270,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			hC96viyBUB8BWIga286hEs6zPZA=
+			azWduOI0+FhbwzWpohHpWhwflM4=
 			</data>
 			<key>hash2</key>
 			<data>
-			0LyXfYNk5IOsPJs38q2iutrv3ZB1tJmve9N3wbDLwNc=
+			jJCX9bBjPzf8/Lu/KBu00f2Tzrxy9YG9yGQyPEUfT2A=
 			</data>
 		</dict>
 		<key>ios-arm64/Treasure.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			xnzvnnbLCWNnKzn4t/wUgkMKcCs=
+			D38FfJdPlgIzFNZ9SA/4ztio+vk=
 			</data>
 			<key>hash2</key>
 			<data>
-			hRh81J8rezJU7PgpnmAlyNwspuOPchCsPqWBjI5flYI=
+			QJSuLLVjUmM+GViUN0CDPViI9UNfqvX/MBZLw8nrxCw=
 			</data>
 		</dict>
 		<key>ios-arm64/Treasure.framework/en.lproj/Localizable.strings</key>
@@ -285,7 +301,7 @@
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>ios-x86_64-simulator/Treasure.framework/AutoEquatable.stencil</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/AutoEquatable.stencil</key>
 		<dict>
 			<key>hash</key>
 			<data>
@@ -296,7 +312,7 @@
 			/kbZ9j7awvMP+nGXs0TAp5hszYb3ee/+LXUP3+28IR8=
 			</data>
 		</dict>
-		<key>ios-x86_64-simulator/Treasure.framework/AutoHashable.stencil</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/AutoHashable.stencil</key>
 		<dict>
 			<key>hash</key>
 			<data>
@@ -307,7 +323,7 @@
 			lLup6LdXw4dmiPY4RCakzJsSVdZdNcpq48ioZNymbo4=
 			</data>
 		</dict>
-		<key>ios-x86_64-simulator/Treasure.framework/AutoInit.stencil</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/AutoInit.stencil</key>
 		<dict>
 			<key>hash</key>
 			<data>
@@ -318,18 +334,18 @@
 			5EblArdJYEpJKQ/3+hlpv8NVVdMnnGTlMYUII3nyDxw=
 			</data>
 		</dict>
-		<key>ios-x86_64-simulator/Treasure.framework/Headers/Treasure-Swift.h</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Headers/Treasure-Swift.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			LL1J1Kg/ms7d9kTd+8y+tLGYtO8=
+			X+/NNFk/w/TcleV8AdbM/ueVi8Q=
 			</data>
 			<key>hash2</key>
 			<data>
-			mdPxQQ/qfZdCzQowF1JQY7iuVKB/Csufak2kX/e7pYo=
+			dR8+OtFqBRCDsa0jHoGTEC9HMQyTuO6DhrYnMaYr+zs=
 			</data>
 		</dict>
-		<key>ios-x86_64-simulator/Treasure.framework/Headers/Treasure.h</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Headers/Treasure.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
@@ -340,62 +356,106 @@
 			F0HzxOy20+irMpORyeFLzoFfLRLtWzQ0giIpOuTR2w0=
 			</data>
 		</dict>
-		<key>ios-x86_64-simulator/Treasure.framework/Info.plist</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Info.plist</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			91AyiQngF8btz2JmmoKKNKeLt78=
+			jT77Yo4RvOwoZBFJ3ZzrUQVKHuQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			ZEHSiAVsCX6hfdawzX94Ya4n7JN7ONmDFe3ShipkCe0=
+			6DW5D9+XzrmBPqtpRIMt18wxrdweZkwQTw4grj4uEFc=
 			</data>
 		</dict>
-		<key>ios-x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			R60Fo0ujhS4B/V19kM+80cK3jVY=
+			D/REVtxXJ3/j5XZbYzFLfBaqSVA=
 			</data>
 			<key>hash2</key>
 			<data>
-			Cbx3RhmE1Yfwy0fjqYd4E+G8fXZ+7HEGoY2TFox12BE=
+			PHMr1OFd8D7d18PZnyYgp1R8b49JHt/ifIrWVNpbEu4=
 			</data>
 		</dict>
-		<key>ios-x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			xertLNLRNCU+QtgAXKHbNyAuKrU=
+			lAC19O1eQoMjzzV/mc+k5YvKWr4=
 			</data>
 			<key>hash2</key>
 			<data>
-			qhXQSGwDFEhMKiG4NrdwnoErzc3VcGUNF7v6qAZD1oU=
+			w4vO/SFkX0IY5XOtwbEZEMeIQmV0pO3cd5igZzbMQmE=
 			</data>
 		</dict>
-		<key>ios-x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/x86_64.swiftdoc</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/arm64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			R60Fo0ujhS4B/V19kM+80cK3jVY=
+			D/REVtxXJ3/j5XZbYzFLfBaqSVA=
 			</data>
 			<key>hash2</key>
 			<data>
-			Cbx3RhmE1Yfwy0fjqYd4E+G8fXZ+7HEGoY2TFox12BE=
+			PHMr1OFd8D7d18PZnyYgp1R8b49JHt/ifIrWVNpbEu4=
 			</data>
 		</dict>
-		<key>ios-x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/x86_64.swiftinterface</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/arm64.swiftinterface</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			xertLNLRNCU+QtgAXKHbNyAuKrU=
+			lAC19O1eQoMjzzV/mc+k5YvKWr4=
 			</data>
 			<key>hash2</key>
 			<data>
-			qhXQSGwDFEhMKiG4NrdwnoErzc3VcGUNF7v6qAZD1oU=
+			w4vO/SFkX0IY5XOtwbEZEMeIQmV0pO3cd5igZzbMQmE=
 			</data>
 		</dict>
-		<key>ios-x86_64-simulator/Treasure.framework/Modules/module.modulemap</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			h9qrYctk0QAJkh9Q2+4iFNhw7Qw=
+			</data>
+			<key>hash2</key>
+			<data>
+			0yCO3VxMImI8/jb2Hkdcjg3enYlGUyUziiV8I0SLXuY=
+			</data>
+		</dict>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			JousTTRMj1y2tyn4lQytU3QmFjw=
+			</data>
+			<key>hash2</key>
+			<data>
+			3kZ7oYsmOKuoHx8sfP7Zl2PYL+Nv7hrOXo5Kr9vAoiA=
+			</data>
+		</dict>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/x86_64.swiftdoc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			h9qrYctk0QAJkh9Q2+4iFNhw7Qw=
+			</data>
+			<key>hash2</key>
+			<data>
+			0yCO3VxMImI8/jb2Hkdcjg3enYlGUyUziiV8I0SLXuY=
+			</data>
+		</dict>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Modules/Treasure.swiftmodule/x86_64.swiftinterface</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			JousTTRMj1y2tyn4lQytU3QmFjw=
+			</data>
+			<key>hash2</key>
+			<data>
+			3kZ7oYsmOKuoHx8sfP7Zl2PYL+Nv7hrOXo5Kr9vAoiA=
+			</data>
+		</dict>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Modules/module.modulemap</key>
 		<dict>
 			<key>hash</key>
 			<data>
@@ -406,29 +466,29 @@
 			CqPTzESYSd/v5sJY/LWCuTcdri2ltkaWnokyO4fhwdQ=
 			</data>
 		</dict>
-		<key>ios-x86_64-simulator/Treasure.framework/Treasure</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/Treasure</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			BGrpT31Vz53YxNyK73ifD+wISLM=
+			Jcr7aOXwPnFD3W5idCZHM/uF8c8=
 			</data>
 			<key>hash2</key>
 			<data>
-			NpzYv93GUOJktJbtghVoGabfdHwxAMe/SACH3YcUFKU=
+			6CguKe8U7B0GDlclTno0WFj5yuB+EhSVVQTkfCdtVis=
 			</data>
 		</dict>
-		<key>ios-x86_64-simulator/Treasure.framework/_CodeSignature/CodeResources</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			1l4WcLTqVccQ72tZUWW6/9WUMpU=
+			EwpXN1L4v6C3kEba1CNWSY64p7U=
 			</data>
 			<key>hash2</key>
 			<data>
-			5vm3KELdQBcmd2Z3B9mEMq8q9XzlImH6qtMtOPGgVuY=
+			RJ3S5gDPKUchhjdyMPNfGdEJhv007hRr6G0K43iw6Yw=
 			</data>
 		</dict>
-		<key>ios-x86_64-simulator/Treasure.framework/en.lproj/Localizable.strings</key>
+		<key>ios-arm64_x86_64-simulator/Treasure.framework/en.lproj/Localizable.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>

@@ -18,7 +18,7 @@
 		</data>
 		<key>Headers/Treasure-Swift.h</key>
 		<data>
-		LL1J1Kg/ms7d9kTd+8y+tLGYtO8=
+		Dfu/+yOxTOEmPFDRq0x2lCYLjsk=
 		</data>
 		<key>Headers/Treasure.h</key>
 		<data>
@@ -26,31 +26,31 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		+MAnor4Pvnnl8ptTZrNJ8mhHvU0=
+		k1AC36swTa/TNFbSEmEASistNtw=
 		</data>
 		<key>Modules/Treasure.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
-		+AA3ZcfKFp7aPSQl6NLAwQV7B0E=
+		9R57z64nMbeuqhl7yZ+/jOsstu8=
 		</data>
 		<key>Modules/Treasure.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		ek44w8FcR3c2+E3jyDfIge4rLZk=
+		bKEw7bUaZSAjd1rm1VFdZ11bW7o=
 		</data>
 		<key>Modules/Treasure.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		LMDYBGy2nzKS8qVKPgCPS8HBnY0=
+		I/A89BXTD2dWeDXWIWqdC8GKz8g=
 		</data>
 		<key>Modules/Treasure.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		+AA3ZcfKFp7aPSQl6NLAwQV7B0E=
+		9R57z64nMbeuqhl7yZ+/jOsstu8=
 		</data>
 		<key>Modules/Treasure.swiftmodule/arm64.swiftinterface</key>
 		<data>
-		ek44w8FcR3c2+E3jyDfIge4rLZk=
+		bKEw7bUaZSAjd1rm1VFdZ11bW7o=
 		</data>
 		<key>Modules/Treasure.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		LMDYBGy2nzKS8qVKPgCPS8HBnY0=
+		I/A89BXTD2dWeDXWIWqdC8GKz8g=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -93,7 +93,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			mdPxQQ/qfZdCzQowF1JQY7iuVKB/Csufak2kX/e7pYo=
+			5UhPqBXYO7ctp1uHyqbFTEjVMgNYB2f6HtcyN/37MZA=
 			</data>
 		</dict>
 		<key>Headers/Treasure.h</key>
@@ -107,42 +107,42 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			mT+wSoqlZda3iVy+FOZITVcOUj9rNtHOMD3owpwhkFA=
+			fVMD3exdyy3KK6awfChJy4r0J1BBldXPEaOhmKw0yk4=
 			</data>
 		</dict>
 		<key>Modules/Treasure.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			drpOJdKHgpAFHXWiKoVN5kMjHjDN1fbkx2HUpG6xRaA=
+			KOwmHETT1WqERc03fzdlsCoKtSKw8AGW1dnmprNBh/k=
 			</data>
 		</dict>
 		<key>Modules/Treasure.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			aApZaLROg+wfszwHtYsD2oGbUT8u+dHc1eAvMhMw+14=
+			jZ12mEYAM7FRFMyM2HH4umzTpU9zRF468rdj4LIzvdw=
 			</data>
 		</dict>
 		<key>Modules/Treasure.swiftmodule/arm64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			mT+wSoqlZda3iVy+FOZITVcOUj9rNtHOMD3owpwhkFA=
+			fVMD3exdyy3KK6awfChJy4r0J1BBldXPEaOhmKw0yk4=
 			</data>
 		</dict>
 		<key>Modules/Treasure.swiftmodule/arm64.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			drpOJdKHgpAFHXWiKoVN5kMjHjDN1fbkx2HUpG6xRaA=
+			KOwmHETT1WqERc03fzdlsCoKtSKw8AGW1dnmprNBh/k=
 			</data>
 		</dict>
 		<key>Modules/Treasure.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			aApZaLROg+wfszwHtYsD2oGbUT8u+dHc1eAvMhMw+14=
+			jZ12mEYAM7FRFMyM2HH4umzTpU9zRF468rdj4LIzvdw=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

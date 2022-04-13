@@ -1,8 +1,8 @@
 // swift-interface-format-version: 1.0
 // swift-compiler-version: Apple Swift version 5.5 (swiftlang-1300.0.31.1 clang-1300.0.29.1)
-// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name Treasure
-import BlocksCore
+// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name Treasure
 import CoreGraphics
+import Darwin/*.fputs*/
 import Foundation
 import ObjectiveC
 import Swift
@@ -178,6 +178,9 @@ public struct ImageElement : Treasure.TreasureElement {
 }
 extension UIKit.UIButton {
   @_Concurrency.MainActor(unsafe) public func setBackgroundColor(color: UIKit.UIColor, forState: UIKit.UIControl.State)
+}
+@_hasMissingDesignatedInitializers open class Presenter<ViewControllerType> {
+  @objc deinit
 }
 public protocol CollectionViewAccessibilityDelegate : AnyObject {
   func collectionView(_ collectionView: Treasure.CollectionView, itemDidBecomeFocused item: Treasure.AnyItemModel, with view: UIKit.UIView?, in section: Treasure.SectionModel)
@@ -452,6 +455,11 @@ public protocol BottomBarsProviding {
 public protocol TopBarsProviding {
   var topBars: [Treasure.BarModeling] { get }
 }
+public protocol APIEnvironment {
+  var baseURL: Foundation.URL { get }
+  var headers: [Swift.String : Swift.String] { get }
+  var queryParameters: [Foundation.URLQueryItem] { get }
+}
 public protocol PresentationProviding {
   var presentation: Treasure.PresentationModel? { get }
 }
@@ -507,7 +515,7 @@ public struct TreasureScreenProperties : Swift.Decodable {
     get
     set
   }
-  final public var environment: BlocksCore.Environment
+  final public var environment: Treasure.TreasureEnvironment
   final public var imageLoader: Treasure.TreasureImageLoadable?
   final public var theme: Treasure.ThemeRegistrable?
   public static let shared: Treasure.TreasureDependency
@@ -1110,12 +1118,6 @@ public protocol HostActionHandler : AnyObject {
   func presentViewController(viewController: UIKit.UIViewController)
   func dismissCurrentViewController(completion: Treasure.VoidCompletion?)
 }
-public protocol TreasureRootRouting : BlocksCore.ViewableRouting {
-  var rootNavigationController: UIKit.UINavigationController? { get }
-  var hostActionHandler: Treasure.HostActionHandler? { get }
-  func showShellApp(animated: Swift.Bool)
-  func showSinglePageApp(animated: Swift.Bool)
-}
 @objc @_Concurrency.MainActor(unsafe) open class CollectionViewController : UIKit.UIViewController {
   @_Concurrency.MainActor(unsafe) public init(layout: UIKit.UICollectionViewLayout, sections: [Treasure.SectionModel]? = nil)
   @_Concurrency.MainActor(unsafe) convenience public init(layout: UIKit.UICollectionViewLayout, items: [Treasure.ItemModeling])
@@ -1299,7 +1301,7 @@ final public class ReuseIDStore {
 }
 @objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class CollectionViewCell : UIKit.UICollectionViewCell, Treasure.ItemCellView {
   @available(*, unavailable)
-  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder _: Foundation.NSCoder)
   @_Concurrency.MainActor(unsafe) final public var view: UIKit.UIView? {
     get
   }
@@ -1880,15 +1882,14 @@ public protocol TreasureHostSDKActionHandler : AnyObject {
   func handle(sdkAction: Treasure.ActionHandlerIngredients<Treasure.ElementsSDKAction>)
 }
 final public class TreasureConfiguration {
-  final public let environment: BlocksCore.Environment
-  public init(environment: BlocksCore.Environment)
+  final public let environment: Treasure.TreasureEnvironment
+  public init(environment: Treasure.TreasureEnvironment)
   @objc deinit
 }
 final public class TreasureHost {
   final public var rootNavigationController: UIKit.UINavigationController? {
     get
   }
-  final public var router: Treasure.TreasureRootRouting?
   weak final public var hostActionHandler: Treasure.TreasureHostActionHandler?
   weak final public var sdkActionHandler: Treasure.TreasureHostSDKActionHandler?
   public init(configuration: Treasure.TreasureConfiguration)
@@ -1908,6 +1909,27 @@ public struct CollectionViewConfiguration {
   public var usesCellPrefetching: Swift.Bool
   public var usesAccurateScrollToItem: Swift.Bool
 }
+public struct TreasureAPIError : Swift.Decodable, Swift.Error, Foundation.LocalizedError {
+  public var status: Swift.Int?
+  public let errorCode: Swift.String
+  public let errorMessage: Swift.String
+  public let type: Treasure.APIErrorType
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public init(status: Swift.Int?, errorCode: Swift.String, errorMessage: Swift.String, type: Treasure.APIErrorType)
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum APIErrorType : Swift.String, Swift.Decodable {
+  case cardError
+  case apiError
+  case authenticationError
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
 public typealias ItemModelBuilder = Treasure.EpoxyModelArrayBuilder<Treasure.ItemModeling>
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) final public class HalfModalPresentationController : UIKit.UIPresentationController {
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init(presentedViewController: UIKit.UIViewController, presenting presentingViewController: UIKit.UIViewController?)
@@ -1926,18 +1948,28 @@ public typealias ItemModelBuilder = Treasure.EpoxyModelArrayBuilder<Treasure.Ite
   }
   @objc deinit
 }
-public struct FetchContextRequest : BlocksCore.BlocksAPIRequest {
+public struct FetchContextRequest : Treasure.TreasureAPIRequest {
   public typealias ResponseType = Treasure.FetchContextResponse
   public var path: Swift.String {
     get
   }
   public var counter: Swift.UInt
-  public var method: BlocksCore.HttpMethod
+  public var method: Treasure.HttpMethod
   public var queryParameters: [Foundation.URLQueryItem]
   public var headers: [Swift.String : Swift.String]
   public func encode(to encoder: Swift.Encoder) throws
 }
-public struct FetchContextResponse : BlocksCore.BlocksAPIResponse {
+open class Component<DependencyType> : Treasure.Dependency {
+  final public let dependency: DependencyType
+  public init(dependency: DependencyType)
+  final public func shared<T>(__function: Swift.String = #function, _ factory: () -> T) -> T
+  @objc deinit
+}
+open class EmptyComponent : Treasure.EmptyDependency {
+  public init()
+  @objc deinit
+}
+public struct FetchContextResponse : Treasure.TreasureAPIResponse {
   public let context: Treasure.Context
   public init(from decoder: Swift.Decoder) throws
 }
@@ -2056,6 +2088,19 @@ extension Treasure.SpacerItem : Treasure.GroupItemModeling {
   }
   public func eraseToAnyGroupItem() -> Treasure.AnyGroupItem
   public func isDiffableItemEqual(to otherDiffableItem: Treasure.Diffable) -> Swift.Bool
+}
+public struct TreasureScope<Base> {
+  public let base: Base
+  public init(base: Base)
+}
+public protocol TreasureCompatible {
+  associatedtype BlocksBase
+  var blocks: Treasure.TreasureScope<Self.BlocksBase> { get }
+}
+extension Treasure.TreasureCompatible {
+  public var blocks: Treasure.TreasureScope<Self> {
+    get
+  }
 }
 public protocol MakeViewProviding {
   associatedtype View : UIKit.UIView
@@ -2285,12 +2330,38 @@ extension Treasure.CallbackContextEpoxyModeled where Self : Treasure.DidEndDispl
   }
   public func didEndDisplaying(_ value: Self.DidEndDisplaying?) -> Self
 }
+extension Foundation.URLSession : Treasure.TreasureCompatible {
+  public typealias BlocksBase = Foundation.URLSession
+}
 public enum ColorSource : Swift.Decodable {
   case designSystem(Swift.String)
   case hex(Swift.String)
   public init(from decoder: Swift.Decoder) throws
 }
 public protocol AccessibilityCustomizedView : UIKit.UIView {
+}
+public enum HttpMethod : Swift.String, Swift.Codable {
+  case get
+  case post
+  case put
+  case delete
+  case head
+  case patch
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public protocol TreasureAPIRequest : Swift.Encodable {
+  associatedtype ResponseType : Treasure.TreasureAPIResponse
+  var path: Swift.String { get }
+  var counter: Swift.UInt { get set }
+  var headers: [Swift.String : Swift.String] { get }
+  var queryParameters: [Foundation.URLQueryItem] { get }
+  var method: Treasure.HttpMethod { get }
+}
+public protocol TreasureAPIResponse : Swift.Decodable {
 }
 @objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class HGroupView : UIKit.UIView, Treasure.EpoxyableView {
   @_Concurrency.MainActor(unsafe) public init(style: Treasure.HGroupView.Style)
@@ -2898,6 +2969,19 @@ public protocol BehaviorsConfigurableView : UIKit.UIView {
 extension Treasure.BehaviorsConfigurableView where Self.Behaviors == Swift.Never {
   public func setBehaviors(_ behaviors: Swift.Never?)
 }
+public struct TreasureEnvironment : Treasure.APIEnvironment {
+  public var baseURL: Foundation.URL
+  public var headers: [Swift.String : Swift.String] {
+    get
+  }
+  public var queryParameters: [Foundation.URLQueryItem]
+  public let clientToken: Swift.String
+  public static func sandbox(clientToken: Swift.String) -> Treasure.TreasureEnvironment
+  public static func portForward(clientToken: Swift.String) -> Treasure.TreasureEnvironment
+  public static func production(clientToken: Swift.String) -> Treasure.TreasureEnvironment
+  public static let unknown: Treasure.TreasureEnvironment
+  public init(baseURL: Foundation.URL? = nil, clientToken: Swift.String)
+}
 public struct ActionHandlerIngredients<T> where T : Treasure.TreasureAction {
   public let value: T
   public let context: Treasure.Context?
@@ -3135,7 +3219,7 @@ public protocol ViewProviding {
   var view: Self.View { get }
 }
 public typealias VoidCompletion = (() -> Swift.Void)
-extension UIKit.UIViewController : BlocksCore.RouterPresentable {
+extension UIKit.UIViewController {
   @_Concurrency.MainActor(unsafe) public func toPresentable() -> UIKit.UIViewController
 }
 public enum Value {
@@ -3402,6 +3486,10 @@ public struct SingleSectionPlacement : Swift.Decodable {
 public struct MultipleSectionsPlacement : Swift.Decodable {
   public let sectionDetails: [Treasure.SectionDetail]
   public init(from decoder: Swift.Decoder) throws
+}
+public protocol Dependency : AnyObject {
+}
+public protocol EmptyDependency : Treasure.Dependency {
 }
 public struct CollectionViewVisibilityMetadata {
   public init(sections: [Treasure.CollectionViewVisibilityMetadata.Section], collectionView: Treasure.CollectionView)
@@ -3792,7 +3880,7 @@ public protocol TreasureImageLoadable : AnyObject {
 public struct SendRequestAction : Treasure.TreasureAction {
   public let url: Treasure.Expression<Swift.String>
   public let analytics: Treasure.TreasureAnalytics?
-  public let method: Treasure.Expression<BlocksCore.HttpMethod>?
+  public let method: Treasure.Expression<Treasure.HttpMethod>?
   public let data: Treasure.DynamicObject?
   public let headers: Treasure.Expression<[Swift.String : Swift.String]>?
   public let showLoading: Treasure.Expression<Swift.Bool>?
@@ -3977,11 +4065,17 @@ extension Treasure.TreasureLayoutOrthogonalScrollingType : Swift.Hashable {}
 extension Treasure.TreasureLayoutOrthogonalScrollingType : Swift.RawRepresentable {}
 extension Treasure.ItemCellState : Swift.Equatable {}
 extension Treasure.ItemCellState : Swift.Hashable {}
+extension Treasure.APIErrorType : Swift.Equatable {}
+extension Treasure.APIErrorType : Swift.Hashable {}
+extension Treasure.APIErrorType : Swift.RawRepresentable {}
 extension Treasure.TreasureActionType : Swift.Equatable {}
 extension Treasure.TreasureActionType : Swift.Hashable {}
 extension Treasure.TreasureActionType : Swift.RawRepresentable {}
 extension Treasure.NavigationStyle : Swift.Equatable {}
 extension Treasure.NavigationStyle : Swift.Hashable {}
+extension Treasure.HttpMethod : Swift.Equatable {}
+extension Treasure.HttpMethod : Swift.Hashable {}
+extension Treasure.HttpMethod : Swift.RawRepresentable {}
 extension Treasure.CollectionSectionItemLayoutSizeType : Swift.Equatable {}
 extension Treasure.CollectionSectionItemLayoutSizeType : Swift.Hashable {}
 extension Treasure.CollectionSectionItemLayoutSizeType : Swift.RawRepresentable {}
