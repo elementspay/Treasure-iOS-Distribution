@@ -2,7 +2,7 @@ Pod::Spec.new do |spec|
   framework_filename = "Treasure.xcframework"
 
   spec.name = "TreasureUI"
-  spec.version = "1.0.2"
+  spec.version = "1.0.4"
   spec.summary = "Treasure iOS SDK"
   spec.description = <<-DESC
     Treasure official SDK

@@ -1146,6 +1146,9 @@ public struct ContextElement : Treasure.TreasureElement {
   public func buildUIElement(parameters: Treasure.TreasureElementParameters) -> Treasure.ElementRenderModeling?
   public init(from decoder: Swift.Decoder) throws
 }
+public protocol Scheduler {
+  func schedule(_ currentCount: Swift.UInt, closure: @escaping () -> Swift.Void) -> Swift.Bool
+}
 public struct ItemModel<View> : Treasure.ViewEpoxyModeled where View : UIKit.UIView {
   public init(dataID: Swift.AnyHashable)
   public init<Content>(dataID: Swift.AnyHashable, content: Content, setContent: @escaping (Treasure.ItemModel<View>.CallbackContext, Content) -> Swift.Void) where Content : Swift.Equatable
@@ -1892,8 +1895,11 @@ final public class TreasureHost {
   }
   weak final public var hostActionHandler: Treasure.TreasureHostActionHandler?
   weak final public var sdkActionHandler: Treasure.TreasureHostSDKActionHandler?
+  final public var internalOperationHandler: Treasure.HostActionHandler? {
+    get
+  }
   public init(configuration: Treasure.TreasureConfiguration)
-  final public func loadFromLocal(fileName: Swift.String) -> UIKit.UIViewController
+  final public func loadFromLocal(filePath: Swift.String) -> UIKit.UIViewController
   final public func loadFromCheckoutUI(completion: @escaping (UIKit.UIViewController) -> Swift.Void)
   final public func pushViewController(vc: UIKit.UIViewController)
   @objc deinit
@@ -3222,6 +3228,10 @@ public typealias VoidCompletion = (() -> Swift.Void)
 extension UIKit.UIViewController {
   @_Concurrency.MainActor(unsafe) public func toPresentable() -> UIKit.UIViewController
 }
+public struct SimpleScheduler : Treasure.Scheduler {
+  public init(maximumCount: Swift.Int)
+  public func schedule(_ currentCount: Swift.UInt, closure: @escaping () -> Swift.Void) -> Swift.Bool
+}
 public enum Value {
   case binding(Treasure.Binding)
   case literal(Treasure.Literal)
@@ -3340,6 +3350,15 @@ public enum SafeAreaLayoutMarginsBehavior {
   public var hashValue: Swift.Int {
     get
   }
+}
+public protocol APIClientProtocol {
+  typealias CompletionHandler<T> = (Swift.Result<T, Swift.Error>) -> Swift.Void
+  func perform<R>(_ request: R, completionHandler: @escaping Self.CompletionHandler<R.ResponseType>) where R : Treasure.TreasureAPIRequest
+}
+final public class APIClient : Treasure.APIClientProtocol {
+  public init(environment: Treasure.APIEnvironment)
+  final public func perform<R>(_ request: R, completionHandler: @escaping Treasure.APIClient.CompletionHandler<R.ResponseType>) where R : Treasure.TreasureAPIRequest
+  @objc deinit
 }
 public struct CardContainerElementStyle : Treasure.ElementStyle {
   public let id: Swift.String
@@ -3869,6 +3888,16 @@ extension Treasure.VGroupItem {
   public func update(_ constrainable: Treasure.Constrainable, animated: Swift.Bool)
   public func setBehaviors(on constrainable: Treasure.Constrainable)
   public func isDiffableItemEqual(to otherDiffableItem: Treasure.Diffable) -> Swift.Bool
+}
+public protocol AnyRetryAPIClient : Treasure.APIClientProtocol {
+  typealias ShouldRetryHandler<T> = (_ result: Swift.Result<T, Swift.Error>) -> Swift.Bool
+  func perform<R>(_ request: R, shouldRetry: Self.ShouldRetryHandler<R.ResponseType>?, completionHandler: @escaping Self.CompletionHandler<R.ResponseType>) where R : Treasure.TreasureAPIRequest
+}
+final public class RetryAPIClient : Treasure.AnyRetryAPIClient {
+  public init(apiClient: Treasure.APIClientProtocol, scheduler: Treasure.Scheduler)
+  final public func perform<R>(_ request: R, completionHandler: @escaping Treasure.RetryAPIClient.CompletionHandler<R.ResponseType>) where R : Treasure.TreasureAPIRequest
+  final public func perform<R>(_ request: R, shouldRetry: Treasure.RetryAPIClient.ShouldRetryHandler<R.ResponseType>?, completionHandler: @escaping Treasure.RetryAPIClient.CompletionHandler<R.ResponseType>) where R : Treasure.TreasureAPIRequest
+  @objc deinit
 }
 public protocol TreasureImageLoadable : AnyObject {
   func setImage(imageView: UIKit.UIImageView, placeHolder: UIKit.UIImage?, url: Foundation.URL, completion: (() -> Swift.Void)?)
